@@ -56,9 +56,38 @@ background: #033B5B;
 color: #49BEFF;
 padding: 8px 16px 14px 18px;
 
+
 .nav-button {
     font-size: 12px;
     margin: 0px auto;
     bottom: 0px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.Active {
+    color: white;
+}
+`;
+
+export const Acc = styled.div `
+display: flex;
+flex-direction: column;
+justify-content: top;
+align-items: space-between;
+
+
+
+.account-tab {
+    padding: 6px;
+    margin: 2px 0px;
+    left: 0px;
+    right: 0px;
+    background: aliceblue;
+}
+p {
+    margin-bottom: 0;
 }
 `;
