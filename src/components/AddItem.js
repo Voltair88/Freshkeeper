@@ -31,10 +31,17 @@ export default function AddItem() {
             />
           </div>
           <hr />
+          <p className="numbers">2</p>
+          <h3>Choose quantity</h3>
           <div className="item-quantity">
-            <p className="numbers">2</p>
-            <h3>Choose quantity</h3>
             <input className="number-input" type="number" />
+            <select className="select-input">
+                <option value="kg">kg</option>
+                <option value="g">g</option>
+                <option value="L">L</option>
+                <option value="ml">ml</option>
+                <option value="pcs">pcs</option>
+            </select>
           </div>
           <hr />
           <p className="numbers">3</p>
@@ -52,36 +59,36 @@ export default function AddItem() {
             <Icon icon="carbon:wheat" width="31" height="31" />
               <p>Pantry</p>
             </div>
-            <div className="storage-options">
-              <p>Custom storage</p>
+            <div className="storage-options" >
+              <p style= {{ marginTop: "8px"}}>Custom storage</p>
             </div>
           </div>
           <hr />
           <div className="pick-day">
             <p className="numbers">4</p>
-            <p>Choose Expiration Date</p>
-            <DatePicker value={day} onChange={(day) => setDay(day)} />
+            <h3>Choose Expiration Date</h3>
+            <DatePicker format="dd/MM/yyyy" className="Datepicker" value={day} onChange={(day) => setDay(day)} />
           </div>
           <hr />
-          <div className="remind">
+{/*           <div className="remind">
             <p>Remind me!</p>
-          </div>
+          </div> */}
           <div className="summary">
             <div className="summary-item">
-              <div className="summary-titel">product</div>
-              <p className="summary-subtitel">{text}</p>
+              <div className="summary-title">product</div>
+              <p className="summary-subtitel">{text}<br /></p>
             </div>
             <div className="summary-item">
-              <div className="summary-titel">storage</div>
+              <div className="summary-title">storage</div>
               <p className="summary-subtitel">fridge</p>
             </div>
             <div className="summary-item">
-              <div className="summary-titel">date</div>
+              <div className="summary-title">date</div>
               <p className="summary-subtitel">7 days</p>
             </div>
             <div className="summary-item">
-              <div className="summary-titel">quantity</div>
-              <p className="summary-subtitel">quantity</p>
+              <div className="summary-title">quantity</div>
+              <p className="summary-subtitel">1L</p>
             </div>
           </div>
           <div className="confirm">

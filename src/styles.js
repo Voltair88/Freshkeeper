@@ -92,21 +92,24 @@ export const Acc = styled.div`
 export const AI = styled.div`
   form {
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
+    padding: 5px 10px;
   }
   .subhead {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-family: Inter, sans-serif;
     font-style: italic;
     font-weight: 300;
     font-size: 12px;
     line-height: 30px;
-    margin: auto 8%;
-    min-width: 100%;
+    min-width: 33%;
   }
   h3 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: auto;
+    margin: 5px auto;
     min-width: 33%;
     font-family: Inter, sans-serif;
     font-style: normal;
@@ -115,17 +118,28 @@ export const AI = styled.div`
     line-height: 30px;
     color: #000000;
   }
-  .numbers {
-    font-family: Inter;
+
+  p {
+    font-family: Inter, sans-serif;
     font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 20px;
+    margin: auto;
+  }
+  .numbers {
+    font-family: Inter,sans-serif;
+    font-style: normal;
+    padding: 8px 7px;
     font-weight: 900;
     font-size: 12px;
     position: absolute;
     line-height: 50%;
-    margin: 0px;
     background-color: #49beff;
-    padding: 10px;
-    border-radius: 100vw;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid #49BEFF;
   }
   input {
     margin: auto;
@@ -142,16 +156,46 @@ export const AI = styled.div`
     border-radius: 5px;
   }
   .number-input {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: bold;
     font-size: 36px;
     text-align: center;
     width: 75px;
     height: 76px;
-    left: 169px;
     top: 314px;
+    margin: auto 15px;
     border-radius: 100vw;
     background: #ffffff;
     border: 2px solid #49beff;
     box-sizing: border-box;
+  }
+  .item-quantity {
+    display: flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: space-between;
+    margin: auto;
+  }
+  .select-input {
+    border-radius: 100vw;
+    background: #ffffff;
+    border: 2px solid #49beff;
+    box-sizing: border-box;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    height: 50px;
+    width: 50px;
+    margin: 0;
+  }
+
+  .Datepicker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .storages {
     display: flex;
@@ -164,17 +208,65 @@ export const AI = styled.div`
     bottom: 0px;
   }
   .storage-options {
-    font-family: Inter, sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
+    margin: auto 5px;
     width: 76px;
     height: 76px;
-    
+    padding-top: 8px;
     border-radius: 100vw;
     border: 2px solid #49beff;
     text-align: center;
-    letter-spacing: 0.015em;
+    letter-spacing: 0.025em;
     text-transform: lowercase;
+  }
+
+  .summary {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: space-between;
+    height: 65px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+  }
+
+  .summary-item {
+    font-family: Inter, sans-serif;
+    margin: auto;
+  }
+  .summary-title {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 30px;
+  }
+  .summary-subtitel {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 30px;
+    color: #49beff;
+  }
+  button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px auto;
+    padding: 14px 16px 14px 18px;
+    width: 311px;
+    height: 48px;
+    top: 740px;
+    margin-top: 15px;
+    border: #ffffff;
+    background: #49beff;
+    color: #ffffff;
+    border-radius: 4px;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
   }
 `;

@@ -1,17 +1,16 @@
-import React from 'react'
-import { Container } from "react-bootstrap";
+import React from "react";
 
-
-
-export default function CenteredContainer({children}) {
-    return (
-<Container
-      className="d-flex justify-content-center"
-      style={{ marginTop: "10vh" }}
+export default function CenteredContainer({ children }) {
+  return (
+    <div
+      className="centered-container"
+      style={{
+        marginTop: "7.2vh",
+        marginBottom: "7.2vh",
+        justifyContent: "center",
+      }}
     >
-      <div className="w-100" style={{ maxWidth: "400px" }}>
-        {children}
-    </div >
-    </Container >
-    )
+      {children}
+    </div>
+  );
 }
