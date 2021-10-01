@@ -1,11 +1,9 @@
 import styled from "styled-components";
-import AddItem from "./components/AddItem";
 
 /* Top Nav */
 export const Header = styled.header`
   @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 
-  /* Auto Layout */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -22,20 +20,10 @@ export const Header = styled.header`
     position: static;
     height: 31px;
     top: 17px;
-    font-family: Pacifico;
+    font-family: Pacifico, cursive, sans-serif;
     font-size: 20px;
     line-height: 20px;
-    /* or 100% */
-    display: flex;
-    align-items: center;
-    text-align: center;
     color: #49beff;
-
-    /* Inside Auto Layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
     margin: 0px 10px;
   }
 `;
@@ -155,20 +143,52 @@ export const AI = styled.div`
     box-sizing: border-box;
     border-radius: 5px;
   }
-  .number-input {
+  .input-group {
+    width: 75px;
+    height: 75px;
+    display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: space-between;
+    margin: auto 120px;
+    border-radius: 100vw
+  }
+  .input-group > .form-control {
+    min-width: 75px;
+  }
+
+  .input-group>.form-control, .input-group>.form-select {
     font-family: Inter, sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 36px;
     text-align: center;
-    width: 75px;
+    position: static;
     height: 76px;
     top: 314px;
-    margin: auto 15px;
-    border-radius: 100vw;
+    margin: auto 15px !important;
+    border-radius: 100vw !important;
     background: #ffffff;
     border: 2px solid #49beff;
     box-sizing: border-box;
+  }
+  .input-group .btn {
+    position: static;
+    height: 49px;
+    width: 49px;
+    top: 314px;
+    margin: 15px 15px;
+    border-radius: 100vw;
+    background: #ffffff;
+    color: #49beff;
+    border: 2px solid #49beff;
+  }
+  .input-group>.form-control, .input-group>.form-select {
+    position: static;
+    height: 76px;
+    width: 75px;
   }
   .item-quantity {
     display: flex;
@@ -178,6 +198,8 @@ export const AI = styled.div`
     align-items: space-between;
     margin: auto;
   }
+
+  
   .select-input {
     border-radius: 100vw;
     background: #ffffff;
@@ -253,6 +275,7 @@ export const AI = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     margin: 5px auto;
     padding: 14px 16px 14px 18px;
     width: 311px;

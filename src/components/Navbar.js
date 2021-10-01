@@ -6,7 +6,7 @@ export default function BottomNavbar() {
   return (
     <Bnav>
       <div className="nav-button">
-        <NavLink to="/additem" activeClassName="Active">
+        <NavLink  to="/additem" activeClassName="Active">
           <Icon icon="ic:baseline-playlist-add" width="55" height="34" />
           <p>Add items</p>
         </NavLink>
@@ -24,7 +24,7 @@ export default function BottomNavbar() {
         </NavLink>
       </div>
       <div className="nav-button">
-        <NavLink to="/profile" activeClassName="Active">
+        <NavLink exact to="/" activeClassName="Active">
         <Icon icon="ic:baseline-account-circle" width="45" height="34" />
         <p>Account</p>
         </NavLink>

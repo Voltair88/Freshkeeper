@@ -5,7 +5,6 @@ import Header from "./Head";
 import BottomNavbar from "./Navbar";
 import Shoppinglist from "./Shoppinglist";
 import Storage from "./Storage";
-import Account from "./Account";
 import React from "react";
 import { AuthProvider } from "../context/AuthContext";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -17,14 +16,14 @@ function App() {
         <AuthProvider>
           <Header />
           <Switch>
-            <PrivateRoute exact path="/profile" component={Profile} />
+            <PrivateRoute exact path="/" component={Profile} />
             <PrivateRoute path="/update-profile" component={UpdateProfile} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
             <Route path="/forgot-password" component={ForgotPassword} />
-            <Route path="/additem" component={AddItem} />
-            <Route path="/shoppinglist" component={Shoppinglist} />
-            <Route path="/storage" component={Storage} />
+            <PrivateRoute path="/additem" component={AddItem} />
+            <PrivateRoute path="/shoppinglist" component={Shoppinglist} />
+            <PrivateRoute path="/storage" component={Storage} />
           </Switch>
           <BottomNavbar />
         </AuthProvider>
