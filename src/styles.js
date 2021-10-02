@@ -115,6 +115,15 @@ export const AI = styled.div`
     line-height: 20px;
     margin: auto;
   }
+
+  .item-name {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.1rem;
+    line-height: 20px;
+    margin: auto;
+  }
   .numbers {
     font-family: Inter,sans-serif;
     font-style: normal;
@@ -142,6 +151,14 @@ export const AI = styled.div`
     border: 1px solid #49beff;
     box-sizing: border-box;
     border-radius: 5px;
+  }
+  .name-input {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-size: 1.1rem;
+    line-height: 20px;
+    margin: auto;
+    padding-left: 1.2rem;
   }
   .input-group {
     width: 75px;
@@ -184,6 +201,8 @@ export const AI = styled.div`
     background: #ffffff;
     color: #49beff;
     border: 2px solid #49beff;
+    font-size: 2rem;
+    color: #000000;
   }
   .input-group>.form-control, .input-group>.form-select {
     position: static;
@@ -215,9 +234,35 @@ export const AI = styled.div`
   }
 
   .Datepicker {
+    margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 276px;
+    height: 41px;
+
+  }
+
+  .MuiInput-underline:before {
+    border-bottom: 0px;
+    content: none;
+  }
+
+  .MuiInput-underline:after {
+    border-bottom: 0px;
+  }
+
+  .MuiInput-underline:hover {
+    border-bottom: 0px;
+
+  }
+  .MuiInputBase-input {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    line-height: 20px;
   }
   .storages {
     display: flex;
