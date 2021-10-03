@@ -4,7 +4,7 @@ import AddItem from "./AddItem";
 import Header from "./Head";
 import BottomNavbar from "./Navbar";
 import Shoppinglist from "./Shoppinglist";
-import Storage from "./Storage";
+import Storagetab from "./Storagetab";
 import React from "react";
 import { AuthProvider } from "../context/AuthContext";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -23,7 +23,7 @@ function App() {
             <Route path="/forgot-password" component={ForgotPassword} />
             <PrivateRoute path="/additem" component={AddItem} />
             <PrivateRoute path="/shoppinglist" component={Shoppinglist} />
-            <PrivateRoute path="/storage" component={Storage} />
+            <PrivateRoute path="/storage" component={Storagetab} />
           </Switch>
           <BottomNavbar />
         </AuthProvider>

@@ -81,6 +81,8 @@ export const AI = styled.div`
   form {
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
     padding: 5px 10px;
+    margin: auto;
+    max-width: 400px;
   }
   .subhead {
     display: flex;
@@ -125,7 +127,7 @@ export const AI = styled.div`
     margin: auto;
   }
   .numbers {
-    font-family: Inter,sans-serif;
+    font-family: Inter, sans-serif;
     font-style: normal;
     padding: 8px 7px;
     font-weight: 900;
@@ -136,7 +138,7 @@ export const AI = styled.div`
     width: 26px;
     height: 26px;
     border-radius: 50%;
-    border: 2px solid #49BEFF;
+    border: 2px solid #49beff;
   }
   input {
     margin: auto;
@@ -170,13 +172,14 @@ export const AI = styled.div`
     justify-content: center;
     align-items: space-between;
     margin: auto 120px;
-    border-radius: 100vw
+    border-radius: 100vw;
   }
   .input-group > .form-control {
     min-width: 75px;
   }
 
-  .input-group>.form-control, .input-group>.form-select {
+  .input-group > .form-control,
+  .input-group > .form-select {
     font-family: Inter, sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -204,7 +207,8 @@ export const AI = styled.div`
     font-size: 2rem;
     color: #000000;
   }
-  .input-group>.form-control, .input-group>.form-select {
+  .input-group > .form-control,
+  .input-group > .form-select {
     position: static;
     height: 76px;
     width: 75px;
@@ -218,7 +222,6 @@ export const AI = styled.div`
     margin: auto;
   }
 
-  
   .select-input {
     border-radius: 100vw;
     background: #ffffff;
@@ -240,7 +243,6 @@ export const AI = styled.div`
     align-items: center;
     width: 276px;
     height: 41px;
-
   }
 
   .MuiInput-underline:before {
@@ -254,7 +256,6 @@ export const AI = styled.div`
 
   .MuiInput-underline:hover {
     border-bottom: 0px;
-
   }
   .MuiInputBase-input {
     font-family: Inter, sans-serif;
@@ -284,6 +285,14 @@ export const AI = styled.div`
     text-align: center;
     letter-spacing: 0.025em;
     text-transform: lowercase;
+  }
+
+  .storage-options {
+    cursor: pointer;
+  }
+
+  .active {
+    background: #49beff;
   }
 
   .summary {
@@ -337,4 +346,62 @@ export const AI = styled.div`
     font-size: 16px;
     line-height: 20px;
   }
+`;
+
+export const ST = styled.div`
+  margin: auto;
+
+  h3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px auto;
+    min-width: 33%;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 30px;
+    color: #000000;
+  }
+
+  .Storage-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 20px;
+    min-width: 33%;
+  }
+
+  p {
+    font-family: Inter, sans-serif;
+    margin: auto;
+  }
+
+  .Storage-item {
+    margin: 8px 0px;
+    padding: 10px 0px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: #000000;
+  }
+
+  .Storage-item:nth-child(1) {
+    background-color: #49beff;
+  }
+  .Storage-item:nth-child(2) {
+    background-color: #73abff;
+  }
+  .Storage-item:nth-child(3) {
+    background-color: #a5c9ff;
+  }
+/*   .Storage-item:nth-child(4) {
+    background-color: #ffe1d4;
+  } */
 `;
