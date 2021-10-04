@@ -434,6 +434,6 @@ export const ST = styled.div`
     background-color: #73abff;
   }
   .Pantry {
-    background-color: #a5c9ff;
+    background-color: #FFE1D5;
   }
 `;
