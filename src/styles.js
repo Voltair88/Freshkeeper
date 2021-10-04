@@ -349,6 +349,7 @@ export const AI = styled.div`
 `;
 
 export const ST = styled.div`
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
   margin: auto;
 
   h3 {
@@ -379,29 +380,60 @@ export const ST = styled.div`
   }
 
   p {
-    font-family: Inter, sans-serif;
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
     margin: auto;
   }
 
-  .Storage-item {
+  .Freezer, .Fridge, .Pantry  {
+    font-family: 'Roboto', sans-serif;
+    line-height: 21px;
     margin: 8px 0px;
-    padding: 10px 0px;
+    padding: 12px 0px 12px 14px;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
     color: #000000;
   }
 
-  .Storage-item:nth-child(1) {
+  .item-name {
+    color: #11A9FF;    
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    padding-left: 14px;
+    height: 45px; 
+    list-style: none;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    background: #D5E4FB;
+    margin: 8px 0px;
+    }
+  li p {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14; 
+  }
+
+  .line {
+    width: 1px;
+    height: 30px;
+    background-color: black;
+    margin: 5px 20px;
+  }
+  .Freezer {
     background-color: #49beff;
   }
-  .Storage-item:nth-child(2) {
+  .Fridge {
     background-color: #73abff;
   }
-  .Storage-item:nth-child(3) {
+  .Pantry {
     background-color: #a5c9ff;
   }
-/*   .Storage-item:nth-child(4) {
-    background-color: #ffe1d4;
-  } */
 `;

@@ -8,7 +8,7 @@ import InputSpinner from 'react-bootstrap-input-spinner'
 export default function AddItem() {
   const [text, setText] = useState("");
   const [quantity, setQuantity] = useState(0);
-  const [amount, setAmount] = useState("");
+  const [unit, setUnit] = useState("");
   const [day, setDay] = useState(new Date());
 
 
@@ -44,13 +44,13 @@ export default function AddItem() {
               min="0"
               value={quantity}
               onChange={setQuantity}
-              placeholder={amount}
+              placeholder={unit}
              />
             <select
               placeholder="Choose quantity"
               className="select-input"
-              onChange={(e) => setAmount(e.target.value)}
-              value={amount}
+              onChange={(e) => setUnit(e.target.value)}
+              value={unit}
             >
               <option hidden>...</option>
               <option value="kg">kg</option>
@@ -115,7 +115,7 @@ export default function AddItem() {
               <div className="summary-title">quantity</div>
               <p className="summary-subtitel">
                 {quantity}
-                {amount}
+                {unit}
               </p>
             </div>
           </div>

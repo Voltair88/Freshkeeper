@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 
 export default function Item() {
   const item = [
@@ -16,4 +16,4 @@ export default function Item() {
       ))}
     </div>
   );
-}
+} */
