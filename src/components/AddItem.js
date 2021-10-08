@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import { AI } from "../styles";
 import { Icon } from "@iconify/react";
-import InputSpinner from 'react-bootstrap-input-spinner' 
+import { AI } from "../styles";
+import InputSpinner from "react-bootstrap-input-spinner";
+import { storages } from "./constants";
 
 export default function AddItem() {
   const [text, setText] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [unit, setUnit] = useState("");
   const [day, setDay] = useState(new Date());
+  const [storage, setStorage] = useState("");
 
+  const icons = [
+    { storage: "Freezer", icon: "ph:thermometer-cold" },
+    { storage: "Fridge", icon: "bx:bx-fridge" },
+    { storage: "Pantry", icon: "carbon:wheat" },
+  ];
 
   return (
     <AI>
@@ -45,7 +52,7 @@ export default function AddItem() {
               value={quantity}
               onChange={setQuantity}
               placeholder={unit}
-             />
+            />
             <select
               placeholder="Choose quantity"
               className="select-input"
@@ -64,21 +71,26 @@ export default function AddItem() {
           <p className="numbers">3</p>
           <h3>Choose storage</h3>
           <div className="storages">
-            <div className="storage-options active">
-              <Icon icon="bx:bx-fridge" width="31" height="31" />
-              <p>fridge</p>
-            </div>
-            <div className="storage-options">
-              <Icon icon="ph:thermometer-cold" width="31" height="31" />
-              <p>freezer</p>
-            </div>
-            <div className="storage-options">
-              <Icon icon="carbon:wheat" width="31" height="31" />
-              <p>Pantry</p>
-            </div>
-            <div className="storage-options">
-              <p style={{ marginTop: "8px" }}>Custom storage</p>
-            </div>
+            {storages.map((storage) => (
+              <div className="storage-options" key={storage}>
+                <input
+                  className={storage}
+                  type="radio"
+                  id={storage}
+                  name="storage"
+                  value={storage}
+                  onChange={(e) => setStorage(e.target.value)}
+                />
+                <label for={storage}>
+                  <Icon
+                    icon={icons.find((i) => i.storage === storage).icon}
+                    width="31"
+                    height="31"
+                  />
+                  {storage}
+                </label>
+              </div>
+            ))}
           </div>
           <hr />
           <div className="pick-day">
@@ -105,7 +117,7 @@ export default function AddItem() {
             </div>
             <div className="summary-item">
               <div className="summary-title">storage</div>
-              <p className="summary-subtitel">fridge</p>
+              <p className="summary-subtitel">{storage}</p>
             </div>
             <div className="summary-item">
               <div className="summary-title">date</div>

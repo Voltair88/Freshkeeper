@@ -140,7 +140,7 @@ export const AI = styled.div`
     border-radius: 50%;
     border: 2px solid #49beff;
   }
-  input {
+  .name-input {
     margin: auto;
     align-items: center;
     display: flex;
@@ -153,8 +153,6 @@ export const AI = styled.div`
     border: 1px solid #49beff;
     box-sizing: border-box;
     border-radius: 5px;
-  }
-  .name-input {
     font-family: Inter, sans-serif;
     font-style: normal;
     font-size: 1.1rem;
@@ -162,6 +160,7 @@ export const AI = styled.div`
     margin: auto;
     padding-left: 1.2rem;
   }
+
   .input-group {
     width: 75px;
     height: 75px;
@@ -264,6 +263,12 @@ export const AI = styled.div`
     text-align: center;
     font-size: 18px;
     line-height: 20px;
+    background: rgba(17, 169, 255, 0.12);
+    border: 1px solid #49beff;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 276px;
+    height: 41px;
   }
   .storages {
     display: flex;
@@ -275,7 +280,7 @@ export const AI = styled.div`
     right: 0px;
     bottom: 0px;
   }
-  .storage-options {
+  .storage-options label {
     margin: auto 5px;
     width: 76px;
     height: 76px;
@@ -284,15 +289,15 @@ export const AI = styled.div`
     border: 2px solid #49beff;
     text-align: center;
     letter-spacing: 0.025em;
-    text-transform: lowercase;
-  }
-
-  .storage-options {
     cursor: pointer;
   }
 
-  .active {
-    background: #49beff;
+  input:checked + label {
+    background-color: #49beff;
+  }
+
+  .storage-options input[type="radio"] {
+    display: none;
   }
 
   .summary {
@@ -349,7 +354,7 @@ export const AI = styled.div`
 `;
 
 export const ST = styled.div`
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+  @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
   margin: auto;
 
   h3 {
@@ -382,12 +387,14 @@ export const ST = styled.div`
   p {
     display: flex;
     align-items: center;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     margin: auto;
   }
 
-  .Freezer, .Fridge, .Pantry  {
-    font-family: 'Roboto', sans-serif;
+  .Freezer,
+  .Fridge,
+  .Pantry {
+    font-family: "Roboto", sans-serif;
     line-height: 21px;
     margin: 8px 0px;
     padding: 12px 0px 12px 14px;
@@ -398,27 +405,27 @@ export const ST = styled.div`
   }
 
   .item-name {
-    color: #11A9FF;    
+    color: #11a9ff;
   }
 
   li {
     display: flex;
     align-items: center;
     padding-left: 14px;
-    height: 45px; 
+    height: 45px;
     list-style: none;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
-    background: #D5E4FB;
+    background: #d5e4fb;
     margin: 8px 0px;
-    }
+  }
   li p {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 14; 
+    font-size: 14;
   }
 
   .line {
@@ -434,6 +441,6 @@ export const ST = styled.div`
     background-color: #73abff;
   }
   .Pantry {
-    background-color: #FFE1D5;
+    background-color: #ffe1d5;
   }
 `;
