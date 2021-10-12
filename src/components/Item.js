@@ -1,19 +1,17 @@
-/* import React from "react";
+import React from "react";
 
-export default function Item() {
-  const item = [
-    { id: 1, name: "bread", storage: "fridge" },
-    { id: 2, name: "milk", storage: "fridge" },
-    { id: 3, name: "cheese", storage: "fridge" },
-    { id: 4, name: "butter", storage: "fridge" },
-  ];
+export default function Item(item) {
   return (
     <div>
-      {item.map((item) => (
-        <item key={item.id}>
-          <item.name>{item.name}</item.name>
-        </item>
-      ))}
+      <div className="item">
+        <div className="item-name">{item.name}</div>{" "}
+        <p>
+          <div className="line"></div>
+          {item.quantity}
+          {item.unit} <div className="line"></div> {item.expiry}{" "}
+          <div className="line"></div>{" "}
+        </p>
+      </div>
     </div>
   );
-} */
+}

@@ -329,6 +329,7 @@ export const AI = styled.div`
     font-size: 18px;
     line-height: 30px;
     color: #49beff;
+    text-transform: lowercase;
   }
   button {
     display: flex;

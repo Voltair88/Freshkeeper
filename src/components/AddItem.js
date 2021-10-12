@@ -1,28 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import { Icon } from "@iconify/react";
 import { AI } from "../styles";
 import InputSpinner from "react-bootstrap-input-spinner";
-import { storages } from "./constants";
+import { ItemsContext } from "../context/ItemsContext";
+import firebase from "../firebase";
+import moment from "moment";
 
 export default function AddItem() {
+  // Context
+  const { selectedStorage } = useContext(ItemsContext);
+
+  // State
   const [text, setText] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [unit, setUnit] = useState("");
-  const [day, setDay] = useState(new Date());
-  const [storage, setStorage] = useState("");
+  const [days, setDays] = useState(0);
+  const [storage, setStorage] = useState(selectedStorage);
 
+  const storages = [
+    { id: 1, name: "Freezer" },
+    { id: 2, name: "Fridge" },
+    { id: 3, name: "Pantry" },
+  ];
   const icons = [
     { storage: "Freezer", icon: "ph:thermometer-cold" },
     { storage: "Fridge", icon: "bx:bx-fridge" },
     { storage: "Pantry", icon: "carbon:wheat" },
   ];
 
+  // Functions
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    {
+      if (text !== "" && quantity !== 0 && unit !== "" && storage !== "") {
+        firebase.firestore().collection("items").add({
+          text,
+          quantity,
+          unit,
+          days : moment(days).endOf('day').fromNow()  ,
+          storage,
+        });
+      }
+    }
+  }
+
+  useEffect(() => {
+    setStorage(selectedStorage);
+  }, [selectedStorage]);
+
   return (
     <AI>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="text">
             <h3>Add Item</h3>
             <p className="subhead ">
@@ -39,6 +71,7 @@ export default function AddItem() {
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="Add product name"
+              autoFocus
             />
           </div>
           <hr />
@@ -72,22 +105,22 @@ export default function AddItem() {
           <h3>Choose storage</h3>
           <div className="storages">
             {storages.map((storage) => (
-              <div className="storage-options" key={storage}>
+              <div className="storage-options" key={storage.name}>
                 <input
-                  className={storage}
+                  className={storage.name}
                   type="radio"
-                  id={storage}
+                  id={storage.id}
                   name="storage"
-                  value={storage}
-                  onChange={(e) => setStorage(e.target.value)}
+                  value={storage.name}
+                  onClick={() => setStorage(storage.name)}
                 />
-                <label for={storage}>
+                <label for={storage.id}>
                   <Icon
-                    icon={icons.find((i) => i.storage === storage).icon}
+                    icon={icons.find((i) => i.storage === storage.name).icon}
                     width="31"
                     height="31"
                   />
-                  {storage}
+                  {storage.name}
                 </label>
               </div>
             ))}
@@ -99,8 +132,8 @@ export default function AddItem() {
             <DatePicker
               format="dd/MM/yyyy"
               className="Datepicker"
-              value={day}
-              onChange={(day) => setDay(day)}
+              value={days}
+              onChange={setDays}
             />
           </div>
           <hr />
@@ -117,11 +150,14 @@ export default function AddItem() {
             </div>
             <div className="summary-item">
               <div className="summary-title">storage</div>
-              <p className="summary-subtitel">{storage}</p>
+              <p className="summary-subtitel">
+                {storage}
+                <br />
+              </p>
             </div>
             <div className="summary-item">
               <div className="summary-title">date</div>
-              <p className="summary-subtitel">7</p>
+              <p className="summary-subtitel">{moment(days).endOf('day').fromNow()  }</p>
             </div>
             <div className="summary-item">
               <div className="summary-title">quantity</div>
