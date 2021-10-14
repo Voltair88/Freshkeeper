@@ -4,10 +4,9 @@ import { useItems, useStorages } from '../Hooks'
 const ItemsContext = createContext()
 
 function ItemsContextProvider({children}) {
-    const defaultStorage = 'Fridge'
-    const [selectedStorage, setSelectedStorage] = useState(defaultStorage)
+    const [selectedStorage, setSelectedStorage] = useState("")
 
-    const items = useItems
+    const items = useItems()
     const storages = useStorages(items)
 
     return (

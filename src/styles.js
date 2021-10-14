@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-/* Top Nav */
+/* Header */
 export const Header = styled.header`
   @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 
@@ -59,6 +59,8 @@ export const Bnav = styled.nav`
   }
 `;
 
+/* Account */
+
 export const Acc = styled.div`
   display: flex;
   flex-direction: column;
@@ -77,12 +79,15 @@ export const Acc = styled.div`
   }
 `;
 
+
+/* Add Item */
 export const AI = styled.div`
-  form {
-    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
     padding: 5px 10px;
     margin: auto;
     max-width: 400px;
+  form {
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
+
   }
   .subhead {
     display: flex;
@@ -269,6 +274,7 @@ export const AI = styled.div`
     border-radius: 5px;
     width: 276px;
     height: 41px;
+    cursor: pointer;
   }
   .storages {
     display: flex;
@@ -354,6 +360,7 @@ export const AI = styled.div`
   }
 `;
 
+/* Storage */
 export const ST = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
   margin: auto;
@@ -389,7 +396,6 @@ export const ST = styled.div`
     display: flex;
     align-items: center;
     font-family: "Roboto", sans-serif;
-    margin: auto;
   }
 
   .Freezer,
@@ -409,7 +415,7 @@ export const ST = styled.div`
     color: #11a9ff;
   }
 
-  li {
+  .item {
     display: flex;
     align-items: center;
     padding-left: 14px;
@@ -422,7 +428,7 @@ export const ST = styled.div`
     background: #d5e4fb;
     margin: 8px 0px;
   }
-  li p {
+  .item p {
     font-family: "Roboto", sans-serif;
     font-style: normal;
     font-weight: 400;

@@ -1,6 +1,5 @@
-import React,{useContext} from "react";
+import React, { useContext } from "react";
 import { ItemsContext } from "../context/ItemsContext";
-import Item from "../components/Item";
 
 export default function Storage() {
   const storages = [
@@ -9,12 +8,63 @@ export default function Storage() {
     { id: 3, name: "Pantry" },
   ];
   const { items } = useContext(ItemsContext);
+
   return (
     <div>
-      {storages.map((storage) => (
+      <div className="Freezer">Freezer</div>
+      {items.map((item) => {
+        if (item.storage === "Freezer") {
+          return (
+            <div className="item">
+              <p>
+                {item.text}
+                <div className="line"></div>
+                {item.quantity}
+                {item.unit} <div className="line"></div> {item.days}{" "}
+                <div className="line"></div>{" "}
+              </p>
+            </div>
+          );
+        }
+      })}
+      <div className="Fridge">Fridge </div>
+      {items.map((item) => {
+        if (item.storage === "Fridge") {
+          return (
+            <div className="item">
+              <p>
+                {item.text}
+                <div className="line"></div>
+                {item.quantity}
+                {item.unit} <div className="line"></div> {item.days}{" "}
+                <div className="line"></div>{" "}
+              </p>
+            </div>
+          );
+        }
+      })}
+      <div className="Pantry">Pantry</div>
+      {items.map((item) => {
+        if (item.storage === "Pantry") {
+          return (
+            <div className="item">
+              <p>
+                {item.text}
+                <div className="line"></div>
+                {item.quantity}
+                {item.unit} <div className="line"></div> {item.days}{" "}
+                <div className="line"></div>{" "}
+              </p>
+            </div>
+          );
+        }
+      })}
+    </div>
+  );
+  /*     {storages.map((storage) => (
         <div>
           <div className={storage.name}>{storage.name}</div>
-          {items.map(item => {
+           {items.map(item => {
             if (item.storage === storage.name) {
               return (
                 <li key={item.id}>
@@ -28,9 +78,11 @@ export default function Storage() {
                 </li>
               );
             }
-          })}
+          })} 
         </div>
       ))}
     </div>
   );
+}
+*/
 }

@@ -7,6 +7,9 @@ import InputSpinner from "react-bootstrap-input-spinner";
 import { ItemsContext } from "../context/ItemsContext";
 import firebase from "../firebase";
 import moment from "moment";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
 
 export default function AddItem() {
   // Context
@@ -14,10 +17,12 @@ export default function AddItem() {
 
   // State
   const [text, setText] = useState("");
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState("");
   const [unit, setUnit] = useState("");
-  const [days, setDays] = useState(0);
-  const [storage, setStorage] = useState(selectedStorage);
+  const [days, setDays] = useState(null);
+  const [storage, setStorage] = useState("");
+  const [open , setOpen] = useState(false);
+  const [message , setMessage] = useState(false);
 
   const storages = [
     { id: 1, name: "Freezer" },
@@ -30,22 +35,54 @@ export default function AddItem() {
     { storage: "Pantry", icon: "carbon:wheat" },
   ];
 
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
   // Functions
 
-  function handleSubmit(e) {
+  const handleClick = () => {
+    if (text === "" || quantity === 0 || unit === "" || days === 0)
+    return setOpen(true);
+    else  {
+      return setMessage(true);
+    }
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    {
-      if (text !== "" && quantity !== 0 && unit !== "" && storage !== "") {
-        firebase.firestore().collection("items").add({
+    if (text === "" || quantity === 0 || unit === "" || days === 0) {
+      handleClick();
+    } else {
+      const db = firebase.firestore();
+      db.collection("items")
+        .add({
           text,
           quantity,
           unit,
-          days : moment(days).endOf('day').fromNow()  ,
+          days: moment(days).endOf("day").fromNow(),
           storage,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        })
+        .then(() => {
+          setText("");
+          setQuantity(0);
+          setUnit("");
+          setDays(0);
+          setStorage("");
+        })
+        .catch((error) => {
+          console.log(error);
         });
-      }
     }
-  }
+  };
 
   useEffect(() => {
     setStorage(selectedStorage);
@@ -157,18 +194,31 @@ export default function AddItem() {
             </div>
             <div className="summary-item">
               <div className="summary-title">date</div>
-              <p className="summary-subtitel">{moment(days).endOf('day').fromNow()  }</p>
+              <p className="summary-subtitel">
+                {moment(days).endOf("day").fromNow()}
+              </p>
             </div>
             <div className="summary-item">
               <div className="summary-title">quantity</div>
               <p className="summary-subtitel">
                 {quantity}
                 {unit}
+                <br />
               </p>
             </div>
           </div>
           <div className="confirm">
-            <button>Confirm</button>
+            <button onClick={handleClick}>Confirm</button>
+             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: 'bottom', horizontal: 'center' }}>
+              <Alert onClose={handleClose} severity="info" style={{ height: '48px' }}  >
+              Please fill in all fields!
+              </Alert>
+            </Snackbar>
+            <Snackbar open={message} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: 'bottom', horizontal: 'center' }}>
+              <Alert onClose={handleClose} severity="success" style={{ height: '48px' }}  >
+              Item added !
+              </Alert>
+            </Snackbar> 
           </div>
         </form>
       </MuiPickersUtilsProvider>
