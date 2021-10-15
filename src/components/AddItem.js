@@ -24,6 +24,8 @@ export default function AddItem() {
   const [open , setOpen] = useState(false);
   const [message , setMessage] = useState(false);
 
+  // array of units
+
   const storages = [
     { id: 1, name: "Freezer" },
     { id: 2, name: "Fridge" },
@@ -132,7 +134,7 @@ export default function AddItem() {
               <option hidden>...</option>
               <option value="kg">kg</option>
               <option value="g">g</option>
-              <option value="L">L</option>
+              <option value="Liter">L</option>
               <option value="ml">ml</option>
               <option value="pcs">pcs</option>
             </select>
