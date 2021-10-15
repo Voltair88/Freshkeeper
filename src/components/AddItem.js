@@ -44,7 +44,7 @@ export default function AddItem() {
   // Functions
 
   const handleClick = () => {
-    if (text === "" || quantity === 0 || unit === "" || days === 0)
+    if (text === "" || quantity === 0 || unit === "" || days === null || storage === "") 
     return setOpen(true);
     else  {
       return setMessage(true);
@@ -60,7 +60,7 @@ export default function AddItem() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (text === "" || quantity === 0 || unit === "" || days === 0) {
+    if (text === "" || quantity === 0 || unit === "" || days === null || storage === "") {
       handleClick();
     } else {
       const db = firebase.firestore();
@@ -119,8 +119,10 @@ export default function AddItem() {
           <div className="item-quantity">
             <InputSpinner
               className="number-input"
-              type="number"
-              min="0"
+              type={'real'}
+              min={0}
+              step={1}
+              presicion={1}
               value={quantity}
               onChange={setQuantity}
               placeholder={unit}
@@ -204,6 +206,7 @@ export default function AddItem() {
               <div className="summary-title">quantity</div>
               <p className="summary-subtitel">
                 {quantity}
+                {" "}
                 {unit}
                 <br />
               </p>
@@ -211,13 +214,13 @@ export default function AddItem() {
           </div>
           <div className="confirm">
             <button onClick={handleClick}>Confirm</button>
-             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: 'bottom', horizontal: 'center' }}>
-              <Alert onClose={handleClose} severity="info" style={{ height: '48px' }}  >
-              Please fill in all fields!
+             <Snackbar open={open} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{vertical: 'bottom', horizontal: 'center' }}>
+              <Alert onClose={handleClose} severity="info" >
+             Please fill in all fields!
               </Alert>
             </Snackbar>
-            <Snackbar open={message} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: 'bottom', horizontal: 'center' }}>
-              <Alert onClose={handleClose} severity="success" style={{ height: '48px' }}  >
+            <Snackbar open={message} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{vertical: 'bottom', horizontal: 'center' }}>
+              <Alert onClose={handleClose} severity="success"  >
               Item added !
               </Alert>
             </Snackbar> 

@@ -87,6 +87,20 @@ export const AI = styled.div`
   max-width: 400px;
   form {
   }
+  .css-acap47-MuiAlert-message {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    position: fixed;
+    padding-left: 30px;
+    
+  }
+  .css-secft3-MuiPaper-root-MuiAlert-root, .css-16sd9zo-MuiPaper-root-MuiAlert-root {
+    height: 50px;
+    position: fixed;
+    bottom: 10%;
+  }
+
   .subhead {
     display: flex;
     flex-direction: column;
@@ -358,6 +372,8 @@ export const AI = styled.div`
     font-size: 16px;
     line-height: 20px;
   }
+
+
 `;
 
 /* Storage */
@@ -390,6 +406,16 @@ export const ST = styled.div`
     line-height: 20px;
     min-width: 33%;
   }
+  .All-items {
+  font-family: "Roboto", sans-serif;
+    line-height: 21px;
+    margin: 8px 0px;
+    padding: 12px 0px 12px 14px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    background-color: #E5CAB0;
+ }
 
   p {
     display: flex;
@@ -447,6 +473,12 @@ export const ST = styled.div`
     line-height: 12px;
     text-align: center;
     padding: 4px;
+    transition: 0.2s ease-out;
+
+  }
+
+  .item-details-button:active {
+    background: #49BEFF;
   }
 
   .item {
@@ -495,4 +527,57 @@ export const ST = styled.div`
   .Pantry {
     background-color: #ffe1d5;
   }
+  .css-acap47-MuiAlert-message {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    position: fixed;
+    padding-left: 30px;
+    width: 300px;
+  }
+  .css-secft3-MuiPaper-root-MuiAlert-root, .css-16sd9zo-MuiPaper-root-MuiAlert-root {
+    height: 50px;
+    width: 300px;
+    position: fixed;
+    bottom: 10%;
+  }
+`;
+
+export const SL = styled.div`
+  margin-bottom: 100px;
+  h3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px auto;
+    min-width: 33%;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 30px;
+    color: #000000;
+  }
+  .Shoppinglist-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 20px;
+    min-width: 33%;
+  }
+ .All-items {
+  font-family: "Roboto", sans-serif;
+    line-height: 21px;
+    margin: 8px 0px;
+    padding: 12px 0px 12px 14px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    background-color: #E5CAB0;
+ }
 `;

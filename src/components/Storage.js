@@ -1,4 +1,4 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import { ItemsContext } from "../context/ItemsContext";
 import { Accordion } from "@material-ui/core";
 import { Icon } from "@iconify/react";
@@ -7,17 +7,21 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { ST } from "../styles";
 import firebase from "../firebase";
-
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
 export default function Storage() {
   // States
-  const [open, setOpen] = React.useState(false);
-  const [item, setItem] = React.useState(null);
+  const [open, setOpen] = useState(false);
 
   // Context
   const { items, setItems } = useContext(ItemsContext);
 
   // Functions
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 
   const handleDelete = (id) => {
     firebase
@@ -26,18 +30,28 @@ export default function Storage() {
       .doc(id)
       .delete()
       .then(() => {
-        console.log("Document successfully deleted!");
+        return setOpen(true);
       })
       .catch((error) => {
         console.error("Error removing document: ", error);
       });
   };
 
-  const storages = [
-    { id: 1, name: "Freezer" },
-    { id: 2, name: "Fridge" },
-    { id: 3, name: "Pantry" },
-  ];
+  const handleMove = (id) => {
+    firebase
+      .firestore()
+      .collection("items")
+      .doc(id)
+      .update({
+        Shoppinglist: true,
+      })
+      .then(() => {
+        return setOpen(true);
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
+  };
 
   return (
     <ST>
@@ -50,14 +64,15 @@ export default function Storage() {
                 <p> {item.text}</p>
                 <div className="item-info">
                   <div className="line"></div>
-                  {item.quantity}
-                  {item.unit} <div className="line"></div> {item.days}
+                  {item.quantity} {item.unit} <div className="line"></div>{" "}
+                  {item.days}
                 </div>
               </AccordionSummary>
               <AccordionDetails>
                 <div className="item-details">
                   <button className="item-details-button">
                     <Icon
+                      onClick={() => handleMove(item.id)}
                       icon="carbon:shopping-cart-plus"
                       width="32"
                       height="32"
@@ -66,7 +81,7 @@ export default function Storage() {
                   </button>
                   <button className="item-details-button">
                     <Icon
-                    onClick={() => handleDelete(item.id)}
+                      onClick={() => handleDelete(item.id)}
                       icon="ic:baseline-delete-forever"
                       width="32"
                       height="32"
@@ -92,14 +107,15 @@ export default function Storage() {
                 <p> {item.text}</p>
                 <div className="item-info">
                   <div className="line"></div>
-                  {item.quantity}
-                  {item.unit} <div className="line"></div> {item.days}
+                  {item.quantity} {item.unit} <div className="line"></div>{" "}
+                  {item.days}
                 </div>
               </AccordionSummary>
               <AccordionDetails>
                 <div className="item-details">
                   <button className="item-details-button">
                     <Icon
+                      onClick={() => handleMove(item.id)}
                       icon="carbon:shopping-cart-plus"
                       width="32"
                       height="32"
@@ -108,8 +124,8 @@ export default function Storage() {
                   </button>
                   <button className="item-details-button">
                     <Icon
-                    onClick={() => handleDelete(item.id)}
-                    icon="ic:baseline-delete-forever"
+                      onClick={() => handleDelete(item.id)}
+                      icon="ic:baseline-delete-forever"
                       width="32"
                       height="32"
                     />
@@ -134,14 +150,15 @@ export default function Storage() {
                 <p> {item.text}</p>
                 <div className="item-info">
                   <div className="line"></div>
-                  {item.quantity}
-                  {item.unit} <div className="line"></div> {item.days}
+                  {item.quantity} {item.unit} <div className="line"></div>{" "}
+                  {item.days}
                 </div>
               </AccordionSummary>
               <AccordionDetails>
                 <div className="item-details">
                   <button className="item-details-button">
                     <Icon
+                      onClick={() => handleMove(item.id)}
                       icon="carbon:shopping-cart-plus"
                       width="32"
                       height="32"
@@ -150,8 +167,8 @@ export default function Storage() {
                   </button>
                   <button className="item-details-button">
                     <Icon
-                    onClick={() => handleDelete(item.id)}
-                    icon="ic:baseline-delete-forever"
+                      onClick={() => handleDelete(item.id)}
+                      icon="ic:baseline-delete-forever"
                       width="32"
                       height="32"
                     />
@@ -167,6 +184,13 @@ export default function Storage() {
           );
         }
       })}
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert severity="success">Item deleted !</Alert>
+      </Snackbar>
     </ST>
   );
 }
