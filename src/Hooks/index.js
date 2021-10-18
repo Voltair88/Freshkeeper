@@ -7,45 +7,44 @@ export function useItems() {
   useEffect(() => {
     let unsubscribe = firebase
       .firestore()
-      .collection('items')
-      .onSnapshot( snapshot => {
-        const newItem = snapshot.docs.map( doc => {
+      .collection("items")
+      .onSnapshot((snapshot) => {
+        const newItem = snapshot.docs.map((doc) => {
           return {
             id: doc.id,
-            ...doc.data()
-          }
-        })
-        setItems(newItem)
-      })
+            ...doc.data(),
+          };
+        });
+        setItems(newItem);
+      });
 
-    return () => unsubscribe()
-  }, [])
+    return () => unsubscribe();
+  }, []);
 
-  return items
+  return items;
 }
 
 export function useStorages(items) {
-    const [storages, setStorages] = useState([]);
-  
-    useEffect(() => {
-      let unsubscribe = firebase
-        .firestore()
-        .collection('storages')
-        .onSnapshot( snapshot => {
-          const newstorage = snapshot.docs.map( doc => {
+  const [storages, setStorages] = useState([]);
 
-            const storageName = doc.data().name
+  useEffect(() => {
+    let unsubscribe = firebase
+      .firestore()
+      .collection("storages")
+      .onSnapshot((snapshot) => {
+        const newstorage = snapshot.docs.map((doc) => {
+          const storageName = doc.data().name;
 
-            return {
-                id: doc.id,
-                name: storageName
-            }
-          })
-          setStorages(newstorage)
-        })
-  
-      return () => unsubscribe()
-    }, [])
-  
-    return items
-  }
+          return {
+            id: doc.id,
+            name: storageName,
+          };
+        });
+        setStorages(newstorage);
+      });
+
+    return () => unsubscribe();
+  }, []);
+
+  return storages;
+}

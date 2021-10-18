@@ -13,7 +13,7 @@ import MuiAlert from "@mui/material/Alert";
 // Context
 
 export default function Shoppinglist() {
-  const { items, setItems } = useContext(ItemsContext);
+  const { items } = useContext(ItemsContext);
   const [open, setOpen] = useState(false);
 
   const Alert = React.forwardRef(function Alert(props, ref) {
@@ -34,6 +34,14 @@ export default function Shoppinglist() {
         console.error("Error removing document: ", error);
       });
   };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
 
   return (
     <ST>
@@ -79,10 +87,13 @@ export default function Shoppinglist() {
             </Accordion>
           );
         }
+
+        return null;
       })}
       <Snackbar
         open={open}
         autoHideDuration={3000}
+        onClose={handleClose}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
         <Alert severity="success">Item deleted !</Alert>

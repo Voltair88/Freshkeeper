@@ -1,68 +1,95 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import { Icon } from "@iconify/react";
 import { AI } from "../styles";
-import InputSpinner from "react-bootstrap-input-spinner";
-import { ItemsContext } from "../context/ItemsContext";
+/* import InputSpinner from "react-bootstrap-input-spinner";
+ */ import { ItemsContext } from "../context/ItemsContext";
 import firebase from "../firebase";
 import moment from "moment";
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
-
+import { Snackbar } from "@material-ui/core";
+import MuiAlert from "@mui/material/Alert";
 
 export default function AddItem() {
-  // Context
-  const { selectedStorage } = useContext(ItemsContext);
-
   // State
   const [text, setText] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [unit, setUnit] = useState("");
+  const [quantity, setQuantity] = useState(0);
+  const [unit, setUnit] = useState();
   const [days, setDays] = useState(null);
   const [storage, setStorage] = useState("");
-  const [open , setOpen] = useState(false);
-  const [message , setMessage] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState(false);
 
-  // array of units
+  // Context
 
-  const storages = [
-    { id: 1, name: "Freezer" },
-    { id: 2, name: "Fridge" },
-    { id: 3, name: "Pantry" },
-  ];
+  const { storages } = useContext(ItemsContext);
+
+  // Arrays
+
   const icons = [
     { storage: "Freezer", icon: "ph:thermometer-cold" },
     { storage: "Fridge", icon: "bx:bx-fridge" },
     { storage: "Pantry", icon: "carbon:wheat" },
   ];
 
+  // Functions
+
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
 
-  // Functions
-
-  const handleClick = () => {
-    if (text === "" || quantity === 0 || unit === "" || days === null || storage === "") 
-    return setOpen(true);
-    else  {
+  /*   const handleClick = () => {
+    if (
+      text === "" ||
+      quantity === 0 ||
+      unit === "" ||
+      days === null ||
+      storage === ""
+    )
+      return setOpen(true);
+    else {
       return setMessage(true);
+      
+    }
+  }; */
+
+  let handlePlus = (e) => {
+    e.preventDefault();
+    setQuantity(quantity + 1);
+  };
+
+  let handleMinus = (e) => {
+    e.preventDefault();
+    if (quantity > 0) {
+      setQuantity(quantity - 1);
     }
   };
 
+/*   const handleQuantity = (e) => {
+    e.preventDefault();
+    setQuantity(e.target.value);
+    return ;
+  };
+ */
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
     setOpen(false);
+    setMessage(false);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (text === "" || quantity === 0 || unit === "" || days === null || storage === "") {
-      handleClick();
-    } else {
+    if (
+      text === "" ||
+      quantity === 0 ||
+      unit === "" ||
+      days === null ||
+      storage === ""
+    )
+      return setOpen(true);
+    else {
       const db = firebase.firestore();
       db.collection("items")
         .add({
@@ -76,19 +103,13 @@ export default function AddItem() {
         .then(() => {
           setText("");
           setQuantity(0);
-          setUnit("");
-          setDays(0);
-          setStorage("");
-        })
-        .catch((error) => {
-          console.log(error);
+          setUnit("...");
+          setDays(null);
+          setStorage(null);
+          setMessage(true);
         });
     }
   };
-
-  useEffect(() => {
-    setStorage(selectedStorage);
-  }, [selectedStorage]);
 
   return (
     <AI>
@@ -117,16 +138,24 @@ export default function AddItem() {
           <p className="numbers">2</p>
           <h3>Choose quantity</h3>
           <div className="item-quantity">
-            <InputSpinner
+            <button className="minus" onClick={handleMinus}>
+              {" "}
+              -{" "}
+            </button>
+            <input
               className="number-input"
-              type={'real'}
-              min={0}
-              step={1}
-              presicion={1}
+              type="number"
+              min="0"
+              max="100"
+              step="1"
               value={quantity}
-              onChange={setQuantity}
-              placeholder={unit}
+              onChange={(e) => setQuantity(e.target.value)}
+              
             />
+            <button className="plus" onClick={handlePlus}>
+              {" "}
+              +{" "}
+            </button>
             <select
               placeholder="Choose quantity"
               className="select-input"
@@ -157,7 +186,9 @@ export default function AddItem() {
                 />
                 <label for={storage.id}>
                   <Icon
-                    icon={icons.find((i) => i.storage === storage.name).icon}
+                    icon={
+                      icons.find((icon) => icon.storage === storage.name).icon
+                    }
                     width="31"
                     height="31"
                   />
@@ -199,31 +230,40 @@ export default function AddItem() {
             <div className="summary-item">
               <div className="summary-title">date</div>
               <p className="summary-subtitel">
-                {moment(days).endOf("day").fromNow()}
+                {days ? moment(days).endOf("day").fromNow() : null}
+                <br />
               </p>
             </div>
             <div className="summary-item">
               <div className="summary-title">quantity</div>
               <p className="summary-subtitel">
-                {quantity}
-                {" "}
-                {unit}
+                {quantity} {unit}
                 <br />
               </p>
             </div>
           </div>
           <div className="confirm">
-            <button onClick={handleClick}>Confirm</button>
-             <Snackbar open={open} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{vertical: 'bottom', horizontal: 'center' }}>
-              <Alert onClose={handleClose} severity="info" >
-             Please fill in all fields!
+            <button /* onClick={handleClick} */>Confirm</button>
+            <Snackbar
+              open={open}
+              autoHideDuration={3000}
+              onClose={handleClose}
+              anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            >
+              <Alert onClose={handleClose} severity="info">
+                Please fill in all fields!
               </Alert>
             </Snackbar>
-            <Snackbar open={message} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{vertical: 'bottom', horizontal: 'center' }}>
-              <Alert onClose={handleClose} severity="success"  >
-              Item added !
+            <Snackbar
+              open={message}
+              autoHideDuration={3000}
+              onClose={handleClose}
+              anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            >
+              <Alert onClose={handleClose} severity="success">
+                Item added !
               </Alert>
-            </Snackbar> 
+            </Snackbar>
           </div>
         </form>
       </MuiPickersUtilsProvider>

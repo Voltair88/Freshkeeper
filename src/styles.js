@@ -29,7 +29,6 @@ export const Header = styled.header`
 `;
 
 /* Bottom Nav */
-
 export const Bnav = styled.nav`
   display: flex;
   flex-direction: row;
@@ -60,8 +59,7 @@ export const Bnav = styled.nav`
 `;
 
 /* Account */
-
-export const Acc = styled.div`
+export const Acc = styled.body`
   display: flex;
   flex-direction: column;
   justify-content: top;
@@ -80,7 +78,7 @@ export const Acc = styled.div`
 `;
 
 /* Add Item */
-export const AI = styled.div`
+export const AI = styled.body`
   width: 100%;
   padding: 5px 10px;
   margin: auto;
@@ -93,7 +91,7 @@ export const AI = styled.div`
     flex-wrap: nowrap;
     position: fixed;
     padding-left: 30px;
-    
+
   }
   .css-secft3-MuiPaper-root-MuiAlert-root, .css-16sd9zo-MuiPaper-root-MuiAlert-root {
     height: 50px;
@@ -232,12 +230,41 @@ export const AI = styled.div`
     width: 75px;
   }
   .item-quantity {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
     display: flex;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: space-between;
     margin: auto;
+  }
+
+  input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  opacity: 1;
+  
+}
+
+  .number-input {
+    -webkit-appearance: none;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    text-align: center;
+    border: 2px solid #49beff;
+  }
+
+  .plus, .minus {
+    text-align: center;
+    border-radius: 50%;
+    width: 50px;
+    border: 2px solid #49beff;
+    background: #ffffff;
+    color: black;
+    font-size: 2rem;
   }
 
   .select-input {
@@ -312,7 +339,7 @@ export const AI = styled.div`
     cursor: pointer;
   }
 
-  input:checked + label {
+  input:active + label {
     background-color: #49beff;
   }
 
@@ -377,7 +404,7 @@ export const AI = styled.div`
 `;
 
 /* Storage */
-export const ST = styled.div`
+export const ST = styled.body`
   @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
   margin-bottom: 100px;
   h3 {
@@ -543,7 +570,8 @@ export const ST = styled.div`
   }
 `;
 
-export const SL = styled.div`
+/* Shopping List */
+export const SL = styled.body`
   margin-bottom: 100px;
   h3 {
     display: flex;

@@ -13,15 +13,23 @@ import MuiAlert from "@mui/material/Alert";
 export default function Storage() {
   // States
   const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState(false);
 
   // Context
-  const { items, setItems } = useContext(ItemsContext);
+  const { items } = useContext(ItemsContext);
 
   // Functions
 
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
 
   const handleDelete = (id) => {
     firebase
@@ -30,7 +38,7 @@ export default function Storage() {
       .doc(id)
       .delete()
       .then(() => {
-        return setOpen(true);
+        return setMessage(true);
       })
       .catch((error) => {
         console.error("Error removing document: ", error);
@@ -97,6 +105,8 @@ export default function Storage() {
             </Accordion>
           );
         }
+
+        return null;
       })}
       <div className="Fridge">Fridge </div>
       {items.map((item) => {
@@ -140,6 +150,8 @@ export default function Storage() {
             </Accordion>
           );
         }
+
+        return null;
       })}
       <div className="Pantry">Pantry</div>
       {items.map((item) => {
@@ -183,13 +195,24 @@ export default function Storage() {
             </Accordion>
           );
         }
+
+        return null;
       })}
       <Snackbar
         open={open}
         autoHideDuration={3000}
+        onClose={handleClose}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
-        <Alert severity="success">Item deleted !</Alert>
+        <Alert severity="info">Item added to shopping list</Alert>
+      </Snackbar>
+      <Snackbar
+        open={message}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert severity="success">Item deleted!</Alert>
       </Snackbar>
     </ST>
   );
