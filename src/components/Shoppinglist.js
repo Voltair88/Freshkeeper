@@ -42,18 +42,15 @@ export default function Shoppinglist() {
     setOpen(false);
   };
 
-
   return (
     <ST>
       <div className="Shoppinglist">
-        <div className="Shoppinglist-Header">
-          <h3>Shopping List</h3>
-          <p className="Storage-description">
-            this is your shoppinglist. see all shoppinglist items, or add new
-            catagoies.
-          </p>
-          <hr />
-        </div>
+        <h3>Shopping List</h3>
+        <p className="Storage-description">
+          this is your shoppinglist. see all shoppinglist items, or add new
+          catagoies.
+        </p>
+        <hr />
       </div>
       <div className="All-items">Shoppinglist </div>
       {items.map((item) => {

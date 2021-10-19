@@ -1,26 +1,22 @@
-import React, { createContext, useState} from 'react'
-import { useItems, useStorages } from '../Hooks'
+import React, { createContext } from "react";
+import { useItems, useStorages } from "../Hooks";
 
-const ItemsContext = createContext()
+const ItemsContext = createContext();
 
-function ItemsContextProvider({children}) {
-    const [selectedStorage, setSelectedStorage] = useState("")
+function ItemsContextProvider({ children }) {
+  const items = useItems();
+  const storages = useStorages(items);
 
-    const items = useItems()
-    const storages = useStorages(items)
-
-    return (
-        <ItemsContext.Provider
-        value={{
-            selectedStorage,
-            setSelectedStorage,
-            storages,
-            items
-        }}
-        >
-            {children}
-         </ItemsContext.Provider>
-    )
+  return (
+    <ItemsContext.Provider
+      value={{
+        storages,
+        items,
+      }}
+    >
+      {children}
+    </ItemsContext.Provider>
+  );
 }
 
-export {ItemsContext, ItemsContextProvider}
+export { ItemsContext, ItemsContextProvider };

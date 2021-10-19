@@ -64,16 +64,54 @@ export const Acc = styled.body`
   flex-direction: column;
   justify-content: top;
   align-items: space-between;
+  @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+
+  h3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px auto;
+    min-width: 33%;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 30px;
+    color: #000000;
+  }
 
   .account-tab {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     padding: 6px;
     margin: 2px 0px;
     left: 0px;
     right: 0px;
-    background: aliceblue;
+    background: rgba(185, 219, 231, 0.4);
+    color: #11a9ff;
+
   }
   p {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
     margin-bottom: 0;
+  }
+  hr {
+    margin: 5px;
+    border: 0.5px solid #49beff;
+  }
+  .icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px auto;
+    font-size: 12px;
+    color: black;
   }
 `;
 
@@ -91,9 +129,9 @@ export const AI = styled.body`
     flex-wrap: nowrap;
     position: fixed;
     padding-left: 30px;
-
   }
-  .css-secft3-MuiPaper-root-MuiAlert-root, .css-16sd9zo-MuiPaper-root-MuiAlert-root {
+  .css-secft3-MuiPaper-root-MuiAlert-root,
+  .css-16sd9zo-MuiPaper-root-MuiAlert-root {
     height: 50px;
     position: fixed;
     bottom: 10%;
@@ -242,11 +280,11 @@ export const AI = styled.body`
     margin: auto;
   }
 
-  input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none;
-  margin: 0;  
-}
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
   .number-input {
     -webkit-appearance: none;
@@ -257,7 +295,8 @@ input[type=number]::-webkit-outer-spin-button {
     border: 2px solid #49beff;
   }
 
-  .plus, .minus {
+  .plus,
+  .minus {
     text-align: center;
     border-radius: 50%;
     width: 50px;
@@ -399,8 +438,6 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 16px;
     line-height: 20px;
   }
-
-
 `;
 
 /* Storage */
@@ -434,15 +471,15 @@ export const ST = styled.body`
     min-width: 33%;
   }
   .All-items {
-  font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif;
     line-height: 21px;
     margin: 8px 0px;
     padding: 12px 0px 12px 14px;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
-    background-color: #E5CAB0;
- }
+    background-color: #e5cab0;
+  }
 
   p {
     display: flex;
@@ -501,11 +538,10 @@ export const ST = styled.body`
     text-align: center;
     padding: 4px;
     transition: 0.2s ease-out;
-
   }
 
   .item-details-button:active {
-    background: #49BEFF;
+    background: #49beff;
   }
 
   .item {
@@ -562,7 +598,8 @@ export const ST = styled.body`
     padding-left: 30px;
     width: 300px;
   }
-  .css-secft3-MuiPaper-root-MuiAlert-root, .css-16sd9zo-MuiPaper-root-MuiAlert-root {
+  .css-secft3-MuiPaper-root-MuiAlert-root,
+  .css-16sd9zo-MuiPaper-root-MuiAlert-root {
     height: 50px;
     width: 300px;
     position: fixed;
@@ -598,14 +635,14 @@ export const SL = styled.body`
     line-height: 20px;
     min-width: 33%;
   }
- .All-items {
-  font-family: "Roboto", sans-serif;
+  .All-items {
+    font-family: "Roboto", sans-serif;
     line-height: 21px;
     margin: 8px 0px;
     padding: 12px 0px 12px 14px;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
-    background-color: #E5CAB0;
- }
+    background-color: #e5cab0;
+  }
 `;

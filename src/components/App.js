@@ -8,6 +8,7 @@ import Storagetab from "./Storagetab";
 import React from "react";
 import { AuthProvider } from "../context/AuthContext";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Account from "./Account";
 
 function App() {
   
@@ -17,7 +18,7 @@ function App() {
         <AuthProvider>
           <Header />
           <Switch>
-            <PrivateRoute exact path="/" component={Profile} />
+            <PrivateRoute exact path="/" component={Account} />
             <PrivateRoute path="/update-profile" component={UpdateProfile} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
