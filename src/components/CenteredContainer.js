@@ -5,10 +5,10 @@ export default function CenteredContainer({ children }) {
     <div
       className="centered-container"
       style={{
-        height: "100%",
-        marginTop: "7.2vh",
-        justifyContent: "center",
-      }}
+        marginTop: "8vh",
+        marginBottom: "8vh",
+/*         justifyContent: "center",
+ */      }}
     >
       {children}
     </div>

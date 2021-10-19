@@ -3,8 +3,7 @@ import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import { Icon } from "@iconify/react";
 import { AI } from "../styles";
-/* import InputSpinner from "react-bootstrap-input-spinner";
- */ import { ItemsContext } from "../context/ItemsContext";
+import { ItemsContext } from "../context/ItemsContext";
 import firebase from "../firebase";
 import moment from "moment";
 import { Snackbar } from "@material-ui/core";
@@ -14,7 +13,7 @@ export default function AddItem() {
   // State
   const [text, setText] = useState("");
   const [quantity, setQuantity] = useState(0);
-  const [unit, setUnit] = useState();
+  const [unit, setUnit] = useState("");
   const [days, setDays] = useState(null);
   const [storage, setStorage] = useState("");
   const [open, setOpen] = useState(false);
@@ -34,43 +33,30 @@ export default function AddItem() {
 
   // Functions
 
-  const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  });
-
-  /*   const handleClick = () => {
-    if (
-      text === "" ||
-      quantity === 0 ||
-      unit === "" ||
-      days === null ||
-      storage === ""
-    )
-      return setOpen(true);
-    else {
-      return setMessage(true);
-      
-    }
-  }; */
-
-  let handlePlus = (e) => {
-    e.preventDefault();
-    setQuantity(quantity + 1);
+  const handleName = (e) => {
+    setText(e.target.value);
   };
 
-  let handleMinus = (e) => {
+  const handleQuantity = (e) => {
+    setQuantity(e.target.value);
+  };
+
+  const handleUnit = (e) => {
+    setUnit(e.target.value);
+  };
+
+  const handlePlus = (e) => {
+    e.preventDefault();
+    setQuantity(parseInt(quantity) + 1);
+  };
+
+  const handleMinus = (e) => {
     e.preventDefault();
     if (quantity > 0) {
-      setQuantity(quantity - 1);
+      setQuantity(parseInt(quantity) - 1);
     }
   };
 
-/*   const handleQuantity = (e) => {
-    e.preventDefault();
-    setQuantity(e.target.value);
-    return ;
-  };
- */
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -85,7 +71,7 @@ export default function AddItem() {
       text === "" ||
       quantity === 0 ||
       unit === "" ||
-      days === null ||
+      days === "" ||
       storage === ""
     )
       return setOpen(true);
@@ -103,13 +89,21 @@ export default function AddItem() {
         .then(() => {
           setText("");
           setQuantity(0);
-          setUnit("...");
+          setUnit("");
           setDays(null);
           setStorage(null);
           setMessage(true);
         });
     }
   };
+
+  // Snackbar
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
+  // Render
 
   return (
     <AI>
@@ -129,7 +123,9 @@ export default function AddItem() {
               className="name-input"
               type="text"
               value={text}
-              onChange={(e) => setText(e.target.value)}
+              maxLength="20"
+              minLength="1"
+              onChange={handleName}
               placeholder="Add product name"
               autoFocus
             />
@@ -145,12 +141,12 @@ export default function AddItem() {
             <input
               className="number-input"
               type="number"
-              min="0"
-              max="100"
-              step="1"
+              min={0}
+              max={1000}
+              precision={2}
+              step={0.1}
               value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
-              
+              onChange={handleQuantity}
             />
             <button className="plus" onClick={handlePlus}>
               {" "}
@@ -159,7 +155,7 @@ export default function AddItem() {
             <select
               placeholder="Choose quantity"
               className="select-input"
-              onChange={(e) => setUnit(e.target.value)}
+              onChange={handleUnit}
               value={unit}
             >
               <option hidden>...</option>
@@ -209,9 +205,6 @@ export default function AddItem() {
             />
           </div>
           <hr />
-          {/*           <div className="remind">
-            <p>Remind me!</p>
-          </div> */}
           <div className="summary">
             <div className="summary-item">
               <div className="summary-title">product</div>
@@ -243,7 +236,10 @@ export default function AddItem() {
             </div>
           </div>
           <div className="confirm">
-            <button /* onClick={handleClick} */>Confirm</button>
+            <button>Confirm</button>
+
+            {/* Snackbar */}
+
             <Snackbar
               open={open}
               autoHideDuration={3000}
@@ -264,6 +260,8 @@ export default function AddItem() {
                 Item added !
               </Alert>
             </Snackbar>
+
+            {/* Snackbar */}
           </div>
         </form>
       </MuiPickersUtilsProvider>
