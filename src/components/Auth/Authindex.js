@@ -4,6 +4,8 @@ import Login from "./Login";
 import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./ForgotPassword";
 import UpdateProfile from "./UpdateProfile";
+import UpdateEmail from "./UpdateEmail";
+import Changepassword from "./ChangePassword";
 
 
 export {
@@ -12,5 +14,7 @@ export {
     Login,
     PrivateRoute,
     ForgotPassword,
-    UpdateProfile
+    UpdateProfile,
+    UpdateEmail,
+    Changepassword
 }

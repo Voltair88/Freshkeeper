@@ -1,10 +1,11 @@
-import { Signup, Profile, Login, PrivateRoute, ForgotPassword, UpdateProfile, } from "./Auth/Authindex";
+import { Signup, Profile, Login, PrivateRoute, ForgotPassword, UpdateProfile, UpdateEmail,Changepassword } from "./Auth/Authindex";
 import CenteredContainer from "./CenteredContainer";
 import AddItem from "./AddItem";
 import Header from "./Head";
 import BottomNavbar from "./Navbar";
 import Shoppinglist from "./Shoppinglist";
 import Storagetab from "./Storagetab";
+import Support from "./Auth/Support";
 import React from "react";
 import { AuthProvider } from "../context/AuthContext";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -19,7 +20,9 @@ function App() {
           <Header />
           <Switch>
             <PrivateRoute exact path="/" component={Account} />
-            <PrivateRoute path="/update-profile" component={UpdateProfile} />
+            <PrivateRoute path="/update-email" component={UpdateEmail} />
+            <PrivateRoute path="/change-password" component={Changepassword} />
+            <PrivateRoute path="/support" component={Support} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
             <Route path="/forgot-password" component={ForgotPassword} />

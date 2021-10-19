@@ -62,10 +62,7 @@ export const Bnav = styled.nav`
 export const Acc = styled.body`
   display: flex;
   flex-direction: column;
-  justify-content: top;
-  align-items: space-between;
   @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-
 
   h3 {
     display: flex;
@@ -84,14 +81,14 @@ export const Acc = styled.body`
   .account-tab {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
     padding: 6px;
     margin: 2px 0px;
     left: 0px;
     right: 0px;
     background: rgba(185, 219, 231, 0.4);
     color: #11a9ff;
-
+    width: 100%;
   }
   p {
     font-family: Roboto;
@@ -99,8 +96,15 @@ export const Acc = styled.body`
     font-weight: bold;
     font-size: 12px;
     line-height: 14px;
-    margin-bottom: 0;
+    margin-bottom: 0px;
+    margin-right: 10px !important;
+    margin:auto;
   }
+  .Logout {
+    margin-left: 0px!important;
+    color: #11A9FF;
+
+    }
   hr {
     margin: 5px;
     border: 0.5px solid #49beff;
@@ -108,10 +112,25 @@ export const Acc = styled.body`
   .icon {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     margin: 5px auto;
     font-size: 12px;
     color: black;
+  }
+  a {
+    text-decoration: none;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+    margin-bottom: 0;
+    color: #49beff;
+  }
+  svg {
+    color: black;
+    margin-right: 0px;
   }
 `;
 
@@ -644,5 +663,46 @@ export const SL = styled.body`
     font-weight: normal;
     font-size: 18px;
     background-color: #e5cab0;
+  }
+`;
+
+export const SP = styled.body`
+  max-width: 30rem;
+  margin-top: 9vh;
+  margin-left: auto;
+  margin-right: auto;
+  h3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 2.7em;
+    margin-right: auto;
+    min-width: 33%;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 30px;
+    color: #000000;
+  }
+  label {
+    color: #49beff;
+  }
+  input,
+  textarea {
+    border: 2px solid #49beff;
+  }
+  button {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 14vh;
+    width: 90%;
+    max-width: 311px;
+    height: 48px;
+    border: none;
+    background: #49beff;
   }
 `;
