@@ -1,14 +1,14 @@
 import React, { useState, useContext } from "react";
 import { ItemsContext } from "../context/ItemsContext";
-import { Accordion } from "@material-ui/core";
-import { Icon } from "@iconify/react";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { ST } from "../styles";
 import firebase from "../firebase";
+import { Icon } from "@iconify/react";
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 export default function Storage() {
   // States
@@ -24,15 +24,33 @@ export default function Storage() {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
 
-  const handleClose = (event, reason) => {
+  const handleClose = (reason) => {
     if (reason === "clickaway") {
       return;
     }
     setOpen(false);
   };
 
-  const handleDelete = (id) => {
+  const emptyStorage = (id) => {
     firebase
+      .firestore()
+      .collection("items")
+      .doc(id)
+      .update({
+        storage: "",
+      })
+        .then(() => {
+          return setMessage(true);
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        });
+      
+  };
+
+
+  const handleDelete = (id) => {
+      firebase
       .firestore()
       .collection("items")
       .doc(id)
@@ -45,13 +63,15 @@ export default function Storage() {
       });
   };
 
+
+
   const handleMove = (id) => {
     firebase
       .firestore()
       .collection("items")
       .doc(id)
       .update({
-        Shoppinglist: true,
+        shoppinglist: true,
       })
       .then(() => {
         return setOpen(true);
@@ -67,7 +87,7 @@ export default function Storage() {
       {items.map((item) => {
         if (item.storage === "Freezer") {
           return (
-            <Accordion className="item">
+            <Accordion className="item" key={item.id}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <p> {item.text}</p>
                 <div className="item-info">
@@ -89,7 +109,7 @@ export default function Storage() {
                   </button>
                   <button className="item-details-button">
                     <Icon
-                      onClick={() => handleDelete(item.id)}
+                      onClick={item.shoppinglist === true ?  () => emptyStorage(item.id) : () => handleDelete(item.id)}
                       icon="ic:baseline-delete-forever"
                       width="32"
                       height="32"
@@ -112,7 +132,7 @@ export default function Storage() {
       {items.map((item) => {
         if (item.storage === "Fridge") {
           return (
-            <Accordion className="item">
+            <Accordion className="item" key={item.id} >
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <p> {item.text}</p>
                 <div className="item-info">
@@ -134,7 +154,7 @@ export default function Storage() {
                   </button>
                   <button className="item-details-button">
                     <Icon
-                      onClick={() => handleDelete(item.id)}
+                      onClick={item.shoppinglist === true ?  () => emptyStorage(item.id) : () => handleDelete(item.id)}
                       icon="ic:baseline-delete-forever"
                       width="32"
                       height="32"
@@ -157,7 +177,7 @@ export default function Storage() {
       {items.map((item) => {
         if (item.storage === "Pantry") {
           return (
-            <Accordion className="item">
+            <Accordion className="item" key={item.id}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <p> {item.text}</p>
                 <div className="item-info">
@@ -179,7 +199,7 @@ export default function Storage() {
                   </button>
                   <button className="item-details-button">
                     <Icon
-                      onClick={() => handleDelete(item.id)}
+                      onClick={item.shoppinglist === true ?  () => emptyStorage(item.id) : () => handleDelete(item.id)}
                       icon="ic:baseline-delete-forever"
                       width="32"
                       height="32"

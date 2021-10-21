@@ -48,3 +48,28 @@ export function useStorages(items) {
 
   return storages;
 }
+
+export function useShoppinglist() {
+  const [shoppinglist, setShoppinglist] = useState([]);
+
+  useEffect(() => {
+    let unsubscribe = firebase
+      .firestore()
+      .collection("Shoppinglist")
+      .onSnapshot((snapshot) => {
+        const newShoppinglist = snapshot.docs.map((doc) => {
+          const shoppinglistName = doc.data().name;
+
+          return {
+            id: doc.id,
+            name: shoppinglistName,
+          };
+        });
+        setShoppinglist(newShoppinglist);
+      });
+
+    return () => unsubscribe();
+  }, []);
+
+  return shoppinglist;
+}

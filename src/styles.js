@@ -59,7 +59,7 @@ export const Bnav = styled.nav`
 `;
 
 /* Account */
-export const Acc = styled.body`
+export const Acc = styled.div`
   display: flex;
   flex-direction: column;
   @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
@@ -98,13 +98,12 @@ export const Acc = styled.body`
     line-height: 14px;
     margin-bottom: 0px;
     margin-right: 10px !important;
-    margin:auto;
+    margin: auto;
   }
   .Logout {
-    margin-left: 0px!important;
-    color: #11A9FF;
-
-    }
+    margin-left: 0px !important;
+    color: #11a9ff;
+  }
   hr {
     margin: 5px;
     border: 0.5px solid #49beff;
@@ -135,26 +134,11 @@ export const Acc = styled.body`
 `;
 
 /* Add Item */
-export const AI = styled.body`
+export const AI = styled.div`
   width: 100%;
   padding: 5px 10px;
   margin: auto;
   max-width: 400px;
-  form {
-  }
-  .css-acap47-MuiAlert-message {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    position: fixed;
-    padding-left: 30px;
-  }
-  .css-secft3-MuiPaper-root-MuiAlert-root,
-  .css-16sd9zo-MuiPaper-root-MuiAlert-root {
-    height: 50px;
-    position: fixed;
-    bottom: 10%;
-  }
 
   .subhead {
     display: flex;
@@ -235,57 +219,6 @@ export const AI = styled.body`
     padding-left: 1.2rem;
   }
 
-  .input-group {
-    width: 75px;
-    height: 75px;
-    display: flex;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: space-between;
-    margin: auto 120px;
-    border-radius: 100vw;
-  }
-  .input-group > .form-control {
-    min-width: 75px;
-  }
-
-  .input-group > .form-control,
-  .input-group > .form-select {
-    font-family: Inter, sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 36px;
-    text-align: center;
-    position: static;
-    height: 76px;
-    top: 314px;
-    margin: auto 15px !important;
-    border-radius: 100vw !important;
-    background: #ffffff;
-    border: 2px solid #49beff;
-    box-sizing: border-box;
-  }
-  .input-group .btn {
-    position: static;
-    height: 49px;
-    width: 49px;
-    top: 314px;
-    margin: 15px 15px;
-    border-radius: 100vw;
-    background: #ffffff;
-    color: #49beff;
-    border: 2px solid #49beff;
-    font-size: 2rem;
-    color: #000000;
-  }
-  .input-group > .form-control,
-  .input-group > .form-select {
-    position: static;
-    height: 76px;
-    width: 75px;
-  }
   .item-quantity {
     font-family: Inter, sans-serif;
     font-style: normal;
@@ -337,43 +270,6 @@ export const AI = styled.body`
     height: 50px;
     width: 50px;
     margin: 0;
-  }
-
-  .Datepicker {
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 276px;
-    height: 41px;
-  }
-
-  .MuiInput-underline:before {
-    border-bottom: 0px;
-    content: none;
-  }
-
-  .MuiInput-underline:after {
-    border-bottom: 0px;
-  }
-
-  .MuiInput-underline:hover {
-    border-bottom: 0px;
-  }
-  .MuiInputBase-input {
-    font-family: Inter, sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    text-align: center;
-    font-size: 18px;
-    line-height: 20px;
-    background: rgba(17, 169, 255, 0.12);
-    border: 1px solid #49beff;
-    box-sizing: border-box;
-    border-radius: 5px;
-    width: 276px;
-    height: 41px;
-    cursor: pointer;
   }
   .storages {
     display: flex;
@@ -457,10 +353,64 @@ export const AI = styled.body`
     font-size: 16px;
     line-height: 20px;
   }
+
+  /* Date picker */
+
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+    display: flex;
+    margin: auto;
+    width: 276px;
+    height: 41px;
+  }
+  
+  .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+    display: flex;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    line-height: 20px;
+    margin: auto;
+    display: flex;
+    background: rgba(17, 169, 255, 0.12);
+    border: 1px solid #49beff;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 276px;
+    height: 41px;
+    cursor: pointer;
+  }
+  .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+    display: flex;
+    border: none; 
+    cursor: pointer;
+  }
+
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+    cursor: pointer;
+    margin-left: 73px;
+  }
+  
+  /* Snackbar */
+
+  .css-acap47-MuiAlert-message {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    position: fixed;
+    padding-left: 30px;
+  }
+  .css-secft3-MuiPaper-root-MuiAlert-root,
+  .css-16sd9zo-MuiPaper-root-MuiAlert-root {
+    height: 50px;
+    position: fixed;
+    bottom: 10%;
+  }
 `;
 
 /* Storage */
-export const ST = styled.body`
+export const ST = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
   margin-bottom: 100px;
   h3 {
@@ -518,13 +468,6 @@ export const ST = styled.body`
     font-size: 18px;
     color: #000000;
   }
-  .MuiAccordionSummary-content {
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    margin: 0px;
-    padding: 0px;
-  }
 
   .item-name {
     color: #11a9ff;
@@ -565,10 +508,8 @@ export const ST = styled.body`
 
   .item {
     width: 100%;
-    /* display: flex; */
     align-items: left;
     padding-left: 14px;
-    /* height: 45px; */
     list-style: none;
     font-family: "Roboto", sans-serif;
     font-style: normal;
@@ -624,10 +565,17 @@ export const ST = styled.body`
     position: fixed;
     bottom: 10%;
   }
+  .MuiAccordionSummary-content {
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0px;
+    padding: 0px;
+  }
 `;
 
 /* Shopping List */
-export const SL = styled.body`
+export const SL = styled.div`
   margin-bottom: 100px;
   h3 {
     display: flex;
@@ -666,7 +614,8 @@ export const SL = styled.body`
   }
 `;
 
-export const SP = styled.body`
+/* Support Page */
+export const SP = styled.div`
   max-width: 30rem;
   margin-top: 9vh;
   margin-left: auto;

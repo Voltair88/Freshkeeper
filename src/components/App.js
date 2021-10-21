@@ -1,4 +1,4 @@
-import { Signup, Profile, Login, PrivateRoute, ForgotPassword, UpdateProfile, UpdateEmail,Changepassword } from "./Auth/Authindex";
+import { Signup, Login, PrivateRoute, ForgotPassword, UpdateEmail,Changepassword } from "./Auth/Authindex";
 import CenteredContainer from "./CenteredContainer";
 import AddItem from "./AddItem";
 import Header from "./Head";

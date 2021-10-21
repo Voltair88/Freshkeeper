@@ -9,10 +9,7 @@ export default function Support() {
     <div>
       <SP>
         <div className="d-flex flex-row ">
-          <Link
-            className="text-decoration-none text-dark"
-            to="/"
-          >
+          <Link className="text-decoration-none text-dark" to="/">
             <Icon icon="dashicons:arrow-left-alt2" width="38" height="38" />{" "}
             back{" "}
           </Link>
@@ -21,15 +18,15 @@ export default function Support() {
         <hr />
         <Form className="d-flex flex-column mx-5 mb-5">
           <FormGroup className="mb-3">
-            <Form.Label for="name"> Name </Form.Label>
+            <Form.Label htmlFor="name"> Name </Form.Label>
             <Form.Control type="text" />
           </FormGroup>
           <FormGroup className="mb-3">
-            <Form.Label for="email"> Email </Form.Label>
+            <Form.Label htmlFor="email"> Email </Form.Label>
             <Form.Control type="text" />
           </FormGroup>
           <FormGroup className="mb-3">
-            <Form.Label for="message"> Question </Form.Label>
+            <Form.Label htmlFor="message"> Question </Form.Label>
             <Form.Control as="textarea" rows={5}></Form.Control>
           </FormGroup>
           <Button className=" p-2 text-center mx-auto" type="submit">

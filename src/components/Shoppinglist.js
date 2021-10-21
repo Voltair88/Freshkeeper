@@ -2,13 +2,14 @@ import React, { useContext, useState } from "react";
 import { ST } from "../styles";
 import { ItemsContext } from "../context/ItemsContext";
 import firebase from "../firebase";
-import { Accordion } from "@material-ui/core";
 import { Icon } from "@iconify/react";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+
 
 // Context
 
@@ -19,21 +20,37 @@ export default function Shoppinglist() {
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
-  const handleDelete = (id) => {
+
+  const handleRemove = (id) => {
     firebase
       .firestore()
       .collection("items")
       .doc(id)
       .update({
-        Shoppinglist: false,
+        shoppinglist: false,
       })
       .then(() => {
-        return setOpen(true);
+        setOpen(true);
       })
       .catch((error) => {
-        console.error("Error removing document: ", error);
+        console.log(error);
       });
   };
+
+
+  const handleDelete = (id) => {
+    firebase
+    .firestore()
+    .collection("items")
+    .doc(id)
+    .delete()
+    .then(() => {
+      return setOpen(true);
+    })
+    .catch((error) => {
+      console.error("Error removing document: ", error);
+    });
+};
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -54,9 +71,9 @@ export default function Shoppinglist() {
       </div>
       <div className="All-items">Shoppinglist </div>
       {items.map((item) => {
-        if (item.Shoppinglist === true) {
+        if (item.shoppinglist === true) {
           return (
-            <Accordion className="item">
+            <Accordion className="item" key={item.id}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <p> {item.text}</p>
                 <div className="item-info">
@@ -68,7 +85,7 @@ export default function Shoppinglist() {
                 <div className="item-details">
                   <button className="item-details-button">
                     <Icon
-                      onClick={() => handleDelete(item.id)}
+                      onClick={item.storage !== "" ? () => handleRemove(item.id) : () => handleDelete(item.id)}
                       icon="ic:baseline-delete-forever"
                       width="32"
                       height="32"
@@ -87,6 +104,10 @@ export default function Shoppinglist() {
 
         return null;
       })}
+      
+     
+{/*              
+ */} 
       <Snackbar
         open={open}
         autoHideDuration={3000}

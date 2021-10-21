@@ -1,18 +1,21 @@
 import React, { useState, useContext } from "react";
-import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import MobileDatePicker from "@mui/lab/MobileDatePicker";
+import TextField from "@mui/material/TextField";
 import { Icon } from "@iconify/react";
 import { AI } from "../styles";
 import { ItemsContext } from "../context/ItemsContext";
 import firebase from "../firebase";
 import moment from "moment";
-import { Snackbar } from "@material-ui/core";
+import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from "@mui/material/Alert";
 
-export default function AddItem() {
+export default function AddItem({ children }) {
   // State
   const [text, setText] = useState("");
   const [quantity, setQuantity] = useState(0);
+  const [shoppinglist] = useState(false);
   const [unit, setUnit] = useState("");
   const [days, setDays] = useState(null);
   const [storage, setStorage] = useState("");
@@ -43,6 +46,10 @@ export default function AddItem() {
 
   const handleUnit = (e) => {
     setUnit(e.target.value);
+  };
+
+  const handleDate = (date) => {
+    setDays(date);
   };
 
   const handlePlus = (e) => {
@@ -82,6 +89,7 @@ export default function AddItem() {
           text,
           quantity,
           unit,
+          shoppinglist,
           days: moment(days).endOf("day").fromNow(),
           storage,
           createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -107,7 +115,7 @@ export default function AddItem() {
 
   return (
     <AI>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
         <form onSubmit={handleSubmit}>
           <div className="text">
             <h3>Add Item</h3>
@@ -180,7 +188,7 @@ export default function AddItem() {
                   value={storage.name}
                   onClick={() => setStorage(storage.name)}
                 />
-                <label for={storage.id}>
+                <label htmlFor={storage.id}>
                   <Icon
                     icon={
                       icons.find((icon) => icon.storage === storage.name).icon
@@ -197,11 +205,11 @@ export default function AddItem() {
           <div className="pick-day">
             <p className="numbers">4</p>
             <h3>Choose Expiration Date</h3>
-            <DatePicker
-              format="dd/MM/yyyy"
-              className="Datepicker"
+            <MobileDatePicker
+              inputFormat="dd/MM/yyyy"
               value={days}
-              onChange={setDays}
+              onChange={handleDate}
+              renderInput={(params) => <TextField {...params} />}
             />
           </div>
           <hr />
@@ -236,7 +244,7 @@ export default function AddItem() {
             </div>
           </div>
           <div className="confirm">
-            <button>Confirm</button>
+            <button type="submit">Confirm</button>
 
             {/* Snackbar */}
 
@@ -264,7 +272,7 @@ export default function AddItem() {
             {/* Snackbar */}
           </div>
         </form>
-      </MuiPickersUtilsProvider>
+      </LocalizationProvider>
     </AI>
   );
 }
