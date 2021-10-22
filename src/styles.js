@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const AppContainer = styled.div`
+
+`;
+
 /* Header */
 export const Header = styled.header`
   @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
@@ -9,7 +13,7 @@ export const Header = styled.header`
   justify-content: center;
   align-items: center;
   padding: 14px 16px 14px 18px;
-  position: absolute;
+  position: static;
   height: 65px;
   left: 0px;
   right: 0px;
@@ -60,6 +64,7 @@ export const Bnav = styled.nav`
 
 /* Account */
 export const Acc = styled.div`
+  padding-bottom: 20%;
   display: flex;
   flex-direction: column;
   @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
@@ -139,6 +144,8 @@ export const AI = styled.div`
   padding: 5px 10px;
   margin: auto;
   max-width: 400px;
+  padding-bottom: 20%;
+
 
   .subhead {
     display: flex;
@@ -413,6 +420,8 @@ export const AI = styled.div`
 export const ST = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
   margin-bottom: 100px;
+  padding-bottom: 20%;
+
   h3 {
     display: flex;
     flex-direction: column;
@@ -477,7 +486,7 @@ export const ST = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin: auto;
   }
 
@@ -576,7 +585,8 @@ export const ST = styled.div`
 
 /* Shopping List */
 export const SL = styled.div`
-  margin-bottom: 100px;
+  padding-bottom: 20%;
+
   h3 {
     display: flex;
     flex-direction: column;
@@ -620,6 +630,8 @@ export const SP = styled.div`
   margin-top: 9vh;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 20%;
+
   h3 {
     display: flex;
     flex-direction: column;

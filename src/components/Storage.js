@@ -3,9 +3,9 @@ import { ItemsContext } from "../context/ItemsContext";
 import { ST } from "../styles";
 import firebase from "../firebase";
 import { Icon } from "@iconify/react";
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -39,18 +39,16 @@ export default function Storage() {
       .update({
         storage: "",
       })
-        .then(() => {
-          return setMessage(true);
-        })
-        .catch((error) => {
-          console.error("Error removing document: ", error);
-        });
-      
+      .then(() => {
+        return setMessage(true);
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
   };
 
-
   const handleDelete = (id) => {
-      firebase
+    firebase
       .firestore()
       .collection("items")
       .doc(id)
@@ -62,8 +60,6 @@ export default function Storage() {
         console.error("Error removing document: ", error);
       });
   };
-
-
 
   const handleMove = (id) => {
     firebase
@@ -83,6 +79,16 @@ export default function Storage() {
 
   return (
     <ST>
+      <div className="Storage">
+        <div className="Storage-header">
+          <h3>Storage</h3>
+          <p className="Storage-description">
+            this is your storage. see all items in storage, or sotrted in
+            preffered sections, or create a new storage.
+          </p>
+        </div>
+        <hr />
+      </div>
       <div className="Freezer">Freezer </div>
       {items.map((item) => {
         if (item.storage === "Freezer") {
@@ -109,7 +115,11 @@ export default function Storage() {
                   </button>
                   <button className="item-details-button">
                     <Icon
-                      onClick={item.shoppinglist === true ?  () => emptyStorage(item.id) : () => handleDelete(item.id)}
+                      onClick={
+                        item.shoppinglist === true
+                          ? () => emptyStorage(item.id)
+                          : () => handleDelete(item.id)
+                      }
                       icon="ic:baseline-delete-forever"
                       width="32"
                       height="32"
@@ -132,7 +142,7 @@ export default function Storage() {
       {items.map((item) => {
         if (item.storage === "Fridge") {
           return (
-            <Accordion className="item" key={item.id} >
+            <Accordion className="item" key={item.id}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <p> {item.text}</p>
                 <div className="item-info">
@@ -154,7 +164,11 @@ export default function Storage() {
                   </button>
                   <button className="item-details-button">
                     <Icon
-                      onClick={item.shoppinglist === true ?  () => emptyStorage(item.id) : () => handleDelete(item.id)}
+                      onClick={
+                        item.shoppinglist === true
+                          ? () => emptyStorage(item.id)
+                          : () => handleDelete(item.id)
+                      }
                       icon="ic:baseline-delete-forever"
                       width="32"
                       height="32"
@@ -199,7 +213,11 @@ export default function Storage() {
                   </button>
                   <button className="item-details-button">
                     <Icon
-                      onClick={item.shoppinglist === true ?  () => emptyStorage(item.id) : () => handleDelete(item.id)}
+                      onClick={
+                        item.shoppinglist === true
+                          ? () => emptyStorage(item.id)
+                          : () => handleDelete(item.id)
+                      }
                       icon="ic:baseline-delete-forever"
                       width="32"
                       height="32"
