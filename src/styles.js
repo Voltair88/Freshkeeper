@@ -363,14 +363,14 @@ export const AI = styled.div`
 
   /* Date picker */
 
-  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+  .MuiFormControl-root {
     display: flex;
     margin: auto;
     width: 276px;
     height: 41px;
   }
   
-  .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+  .MuiInputBase-root {
     display: flex;
     font-family: Inter, sans-serif;
     font-style: normal;
@@ -388,28 +388,28 @@ export const AI = styled.div`
     height: 41px;
     cursor: pointer;
   }
-  .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  .MuiOutlinedInput-notchedOutline {
     display: flex;
     border: none; 
     cursor: pointer;
   }
 
-  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  .MuiInputBase-input {
     cursor: pointer;
     margin-left: 73px;
   }
   
   /* Snackbar */
 
-  .css-acap47-MuiAlert-message {
+  .MuiAlert-message {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     position: fixed;
     padding-left: 30px;
   }
-  .css-secft3-MuiPaper-root-MuiAlert-root,
-  .css-16sd9zo-MuiPaper-root-MuiAlert-root {
+  .MuiPaper-root,
+  .MuiAlert-root {
     height: 50px;
     position: fixed;
     bottom: 10%;
