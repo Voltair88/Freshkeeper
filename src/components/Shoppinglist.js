@@ -33,7 +33,7 @@ export default function Shoppinglist() {
         setOpen(true);
       })
       .catch((error) => {
-        console.log(error);
+        console.log("error");
       });
   };
 

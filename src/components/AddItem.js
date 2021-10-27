@@ -8,8 +8,9 @@ import { AI } from "../styles";
 import { ItemsContext } from "../context/ItemsContext";
 import firebase from "../firebase";
 import moment from "moment";
-import Snackbar from '@mui/material/Snackbar';
+import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function AddItem({ children }) {
   // State
@@ -21,10 +22,10 @@ export default function AddItem({ children }) {
   const [storage, setStorage] = useState("");
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState(false);
-
   // Context
 
   const { storages } = useContext(ItemsContext);
+  const [user] = useAuthState(firebase.auth());
 
   // Arrays
 
@@ -92,7 +93,7 @@ export default function AddItem({ children }) {
           shoppinglist,
           days: moment(days).endOf("day").fromNow(),
           storage,
-          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          user: user.uid,
         })
         .then(() => {
           setText("");

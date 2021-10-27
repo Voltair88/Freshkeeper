@@ -627,7 +627,6 @@ export const SL = styled.div`
 /* Support Page */
 export const SP = styled.div`
   max-width: 30rem;
-  margin-top: 9vh;
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 20%;

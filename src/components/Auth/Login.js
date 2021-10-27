@@ -3,26 +3,23 @@ import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../context/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 
-
 export default function Login() {
-    const emailRef = useRef();
-    const passwordRef = useRef();
-    const { login } = useAuth();
-    const [error, setError] = useState("");   
-    const [loading, setLoading] = useState(false);
-    const history = useHistory();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const { login } = useAuth();
+  const [error, setError] = useState("");
+  const history = useHistory();
 
-    async function handleSubmit(e) {
-        e.preventDefault()
-        try {
-            setError("")
-            setLoading(true)
-        await login(emailRef.current.value, passwordRef.current.value)
-        history.push("/storage")
-        } catch {
-            setError("Failed to log in")
-        }
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      setError("");
+      await login(emailRef.current.value, passwordRef.current.value);
+      history.push("/storage");
+    } catch {
+      setError("Failed to log in");
     }
+  }
   return (
     <div>
       <Card>
@@ -37,6 +34,7 @@ export default function Login() {
                 placeholder="Enter email"
                 ref={emailRef}
                 required
+                autoComplete="on"
               />
             </Form.Group>
             <Form.Group id="password">
@@ -44,21 +42,27 @@ export default function Login() {
               <Form.Control
                 type="password"
                 placeholder="Password"
+                autoComplete="on"
                 ref={passwordRef}
                 required
               />
             </Form.Group>
-            <Button className="w-100 text-center mt-2" type="submit" disabled={loading}>
+            <Button
+              className="w-100 text-center mt-2"
+              type="submit"
+            >
               Login
             </Button>
+            <div className="w-100 text-center mt-2"></div>
           </Form>
           <div className="w-100 text-center mt-2">
             <Link to="/forgot-password">Forgot password</Link>
           </div>
+
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-      Need an account?<Link to="/signup">Sign up</Link>
+        Need an account?<Link to="/signup">Sign up</Link>
       </div>
     </div>
   );

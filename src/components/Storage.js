@@ -9,20 +9,24 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { useAuthState } from "react-firebase-hooks/auth"
 
 export default function Storage() {
+ 
   // States
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState(false);
 
   // Context
   const { items } = useContext(ItemsContext);
+  const [user] = useAuthState(firebase.auth());
 
   // Functions
 
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
+
 
   const handleClose = (reason) => {
     if (reason === "clickaway") {
@@ -34,7 +38,7 @@ export default function Storage() {
   const emptyStorage = (id) => {
     firebase
       .firestore()
-      .collection("items")
+      .collection(user.uid)
       .doc(id)
       .update({
         storage: "",
@@ -50,7 +54,7 @@ export default function Storage() {
   const handleDelete = (id) => {
     firebase
       .firestore()
-      .collection("items")
+      .collection(user.uid)
       .doc(id)
       .delete()
       .then(() => {
@@ -91,7 +95,7 @@ export default function Storage() {
       </div>
       <div className="Freezer">Freezer </div>
       {items.map((item) => {
-        if (item.storage === "Freezer") {
+        if (item.storage === "Freezer" && item.user === user.uid) {
           return (
             <Accordion className="item" key={item.id}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -140,7 +144,7 @@ export default function Storage() {
       })}
       <div className="Fridge">Fridge </div>
       {items.map((item) => {
-        if (item.storage === "Fridge") {
+        if (item.storage === "Fridge" && item.user === user.uid) {
           return (
             <Accordion className="item" key={item.id}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -189,7 +193,7 @@ export default function Storage() {
       })}
       <div className="Pantry">Pantry</div>
       {items.map((item) => {
-        if (item.storage === "Pantry") {
+        if (item.storage === "Pantry" && item.user === user.uid) {
           return (
             <Accordion className="item" key={item.id}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>

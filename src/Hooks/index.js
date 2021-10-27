@@ -1,25 +1,24 @@
 import { useState, useEffect } from "react";
 import firebase from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export function useItems() {
   const [items, setItems] = useState([]);
+  const [user] = useAuthState(firebase.auth());
 
   useEffect(() => {
-    let unsubscribe = firebase
+    const unsubscribe = firebase
       .firestore()
       .collection("items")
-      .onSnapshot((snapshot) => {
-        const newItem = snapshot.docs.map((doc) => {
-          return {
-            id: doc.id,
-            ...doc.data(),
-          };
-        });
-        setItems(newItem);
+      .onSnapshot(snapshot => {
+        const newItems = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setItems(newItems);
       });
-
     return () => unsubscribe();
-  }, []);
+  }, [user]);
 
   return items;
 }
