@@ -73,7 +73,7 @@ export default function Shoppinglist() {
       </div>
       <div className="All-items">Shoppinglist </div>
       {items.map((item) => {
-        if (item.shoppinglist === true && item.uid === user.uid) {
+        if (item.shoppinglist === true) {
           return (
             <Accordion className="item" key={item.id}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
