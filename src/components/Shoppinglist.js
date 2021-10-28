@@ -9,6 +9,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { useAuthState } from "react-firebase-hooks/auth"
 
 
 // Context
@@ -16,6 +17,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 export default function Shoppinglist() {
   const { items } = useContext(ItemsContext);
   const [open, setOpen] = useState(false);
+  const [user] = useAuthState(firebase.auth());
   
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -71,7 +73,7 @@ export default function Shoppinglist() {
       </div>
       <div className="All-items">Shoppinglist </div>
       {items.map((item) => {
-        if (item.shoppinglist === true) {
+        if (item.shoppinglist === true && item.user === user.uid) {
           return (
             <Accordion className="item" key={item.id}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
