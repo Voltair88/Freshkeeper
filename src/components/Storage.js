@@ -10,8 +10,6 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import Button from "@mui/material/Button";
-import CloseIcon from '@mui/icons-material/Close';
 
 export default function Storage() {
   // States
@@ -259,7 +257,7 @@ export default function Storage() {
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
         <Alert onClose={handleClose} severity="success">
-          Item deleted!<Button onClick={handleClose}></Button>
+          Item deleted!
         </Alert>
       </Snackbar>
     </ST>

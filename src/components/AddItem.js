@@ -11,7 +11,6 @@ import moment from "moment";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useAuthState } from "react-firebase-hooks/auth";
-import Button from "@mui/material/Button";
 
 export default function AddItem({ children }) {
   // State
@@ -265,7 +264,7 @@ export default function AddItem({ children }) {
               anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             >
               <Alert onClose={handleClose} severity="success">
-                Item added !<Button onClick={handleClose}></Button>
+                Item added !
               </Alert>
             </Snackbar>
 
