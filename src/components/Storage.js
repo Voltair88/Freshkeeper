@@ -8,11 +8,12 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { useAuthState } from "react-firebase-hooks/auth"
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useAuthState } from "react-firebase-hooks/auth";
+import Button from "@mui/material/Button";
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function Storage() {
- 
   // States
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState(false);
@@ -27,18 +28,19 @@ export default function Storage() {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
 
-
-  const handleClose = (reason) => {
+  const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
+
     setOpen(false);
+    setMessage(false);
   };
 
   const emptyStorage = (id) => {
     firebase
       .firestore()
-      .collection(user.uid)
+      .collection("items")
       .doc(id)
       .update({
         storage: "",
@@ -54,7 +56,7 @@ export default function Storage() {
   const handleDelete = (id) => {
     firebase
       .firestore()
-      .collection(user.uid)
+      .collection("items")
       .doc(id)
       .delete()
       .then(() => {
@@ -242,11 +244,13 @@ export default function Storage() {
       })}
       <Snackbar
         open={open}
-        autoHideDuration={3000}
-        onClose={handleClose}
+/*         autoHideDuration={3000}
+ */        onClose={handleClose}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
-        <Alert severity="info">Item added to shopping list</Alert>
+        <Alert onClose={handleClose} severity="info">
+          Item added to shopping list
+        </Alert>
       </Snackbar>
       <Snackbar
         open={message}
@@ -254,7 +258,9 @@ export default function Storage() {
         onClose={handleClose}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
-        <Alert severity="success">Item deleted!</Alert>
+        <Alert onClose={handleClose} severity="success">
+          Item deleted!<Button onClick={handleClose}></Button>
+        </Alert>
       </Snackbar>
     </ST>
   );

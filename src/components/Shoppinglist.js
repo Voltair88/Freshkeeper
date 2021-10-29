@@ -3,14 +3,14 @@ import { ST } from "../styles";
 import { ItemsContext } from "../context/ItemsContext";
 import firebase from "../firebase";
 import { Icon } from "@iconify/react";
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { useAuthState } from "react-firebase-hooks/auth"
-
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useAuthState } from "react-firebase-hooks/auth";
+import Button from "@mui/material/Button";
 
 // Context
 
@@ -18,7 +18,7 @@ export default function Shoppinglist() {
   const { items } = useContext(ItemsContext);
   const [open, setOpen] = useState(false);
   const [user] = useAuthState(firebase.auth());
-  
+
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
@@ -39,20 +39,19 @@ export default function Shoppinglist() {
       });
   };
 
-
   const handleDelete = (id) => {
     firebase
-    .firestore()
-    .collection("items")
-    .doc(id)
-    .delete()
-    .then(() => {
-      return setOpen(true);
-    })
-    .catch((error) => {
-      console.error("Error removing document: ", error);
-    });
-};
+      .firestore()
+      .collection("items")
+      .doc(id)
+      .delete()
+      .then(() => {
+        return setOpen(true);
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
+  };
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -87,7 +86,11 @@ export default function Shoppinglist() {
                 <div className="item-details">
                   <button className="item-details-button">
                     <Icon
-                      onClick={item.storage !== "" ? () => handleRemove(item.id) : () => handleDelete(item.id)}
+                      onClick={
+                        item.storage !== ""
+                          ? () => handleRemove(item.id)
+                          : () => handleDelete(item.id)
+                      }
                       icon="ic:baseline-delete-forever"
                       width="32"
                       height="32"
@@ -106,17 +109,18 @@ export default function Shoppinglist() {
 
         return null;
       })}
-      
-     
-{/*              
- */} 
+
+      {/*
+       */}
       <Snackbar
         open={open}
         autoHideDuration={3000}
         onClose={handleClose}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
-        <Alert severity="success">Item deleted !</Alert>
+        <Alert onClose={handleClose} severity="success">
+          Item deleted ! <Button onClick={handleClose}></Button>
+        </Alert>
       </Snackbar>
     </ST>
   );

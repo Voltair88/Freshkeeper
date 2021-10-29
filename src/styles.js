@@ -259,10 +259,12 @@ export const AI = styled.div`
     text-align: center;
     border-radius: 50%;
     width: 50px;
+    height: 50px;
     border: 2px solid #49beff;
     background: #ffffff;
     color: black;
     font-size: 2rem;
+    margin: 15px auto 5px auto;
   }
 
   .select-input {
@@ -339,7 +341,7 @@ export const AI = styled.div`
     color: #49beff;
     text-transform: lowercase;
   }
-  button {
+  .SubmitButton {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -401,18 +403,10 @@ export const AI = styled.div`
   
   /* Snackbar */
 
-  .MuiAlert-message {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    position: fixed;
-    padding-left: 30px;
-  }
-  .MuiPaper-root,
-  .MuiAlert-root {
-    height: 50px;
-    position: fixed;
-    bottom: 10%;
+
+  .MuiSnackbar-root {
+    bottom: 7%;
+
   }
 `;
 
@@ -559,28 +553,7 @@ export const ST = styled.div`
   .Pantry {
     background-color: #ffe1d5;
   }
-  .css-acap47-MuiAlert-message {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    position: fixed;
-    padding-left: 30px;
-    width: 300px;
-  }
-  .css-secft3-MuiPaper-root-MuiAlert-root,
-  .css-16sd9zo-MuiPaper-root-MuiAlert-root {
-    height: 50px;
-    width: 300px;
-    position: fixed;
-    bottom: 10%;
-  }
-  .MuiAccordionSummary-content {
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    margin: 0px;
-    padding: 0px;
-  }
+
 `;
 
 /* Shopping List */

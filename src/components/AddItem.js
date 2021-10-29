@@ -11,6 +11,7 @@ import moment from "moment";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Button from "@mui/material/Button";
 
 export default function AddItem({ children }) {
   // State
@@ -69,6 +70,7 @@ export default function AddItem({ children }) {
     if (reason === "clickaway") {
       return;
     }
+
     setOpen(false);
     setMessage(false);
   };
@@ -154,19 +156,14 @@ export default function AddItem({ children }) {
               max={1000}
               precision={2}
               step={0.1}
-              value={quantity}
+              value={quantity === 0 ? "" : quantity}
               onChange={handleQuantity}
             />
             <button className="plus" onClick={handlePlus}>
               {" "}
               +{" "}
             </button>
-            <select
-              placeholder="Choose quantity"
-              className="select-input"
-              onChange={handleUnit}
-              value={unit}
-            >
+            <select className="select-input" onChange={handleUnit} value={unit}>
               <option hidden>...</option>
               <option value="kg">kg</option>
               <option value="g">g</option>
@@ -239,13 +236,15 @@ export default function AddItem({ children }) {
             <div className="summary-item">
               <div className="summary-title">quantity</div>
               <p className="summary-subtitel">
-                {quantity} {unit}
+                {quantity === 0 ? " " : quantity} {unit}
                 <br />
               </p>
             </div>
           </div>
           <div className="confirm">
-            <button type="submit">Confirm</button>
+            <button className="SubmitButton" type="submit">
+              Confirm
+            </button>
 
             {/* Snackbar */}
 
@@ -266,7 +265,7 @@ export default function AddItem({ children }) {
               anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             >
               <Alert onClose={handleClose} severity="success">
-                Item added !
+                Item added !<Button onClick={handleClose}></Button>
               </Alert>
             </Snackbar>
 
