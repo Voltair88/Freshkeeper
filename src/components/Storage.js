@@ -87,8 +87,8 @@ export default function Storage() {
         <div className="Storage-header">
           <h3>Storage</h3>
           <p className="Storage-description">
-            this is your storage. see all items in storage, or sotrted in
-            preffered sections, or create a new storage.
+            this is your storage. see all items in storage, or sorted in
+            preferred sections.
           </p>
         </div>
         <hr />
@@ -102,8 +102,8 @@ export default function Storage() {
                 <p> {item.text}</p>
                 <div className="item-info">
                   <div className="line"></div>
-                  {item.quantity} {item.unit} <div className="line"></div>{" "}
-                  {item.days}
+                  <p> {item.quantity} {item.unit}</p> <div className="line"></div>{" "}
+                 <p> {item.days} </p>
                 </div>
               </AccordionSummary>
               <AccordionDetails>
@@ -151,8 +151,8 @@ export default function Storage() {
                 <p> {item.text}</p>
                 <div className="item-info">
                   <div className="line"></div>
-                  {item.quantity} {item.unit} <div className="line"></div>{" "}
-                  {item.days}
+                 <p> {item.quantity} {item.unit}</p> <div className="line"></div>{" "}
+                 <p> {item.days} </p>
                 </div>
               </AccordionSummary>
               <AccordionDetails>
@@ -200,8 +200,8 @@ export default function Storage() {
                 <p> {item.text}</p>
                 <div className="item-info">
                   <div className="line"></div>
-                  {item.quantity} {item.unit} <div className="line"></div>{" "}
-                  {item.days}
+                  <p> {item.quantity} {item.unit}</p> <div className="line"></div>{" "}
+                 <p> {item.days} </p>
                 </div>
               </AccordionSummary>
               <AccordionDetails>

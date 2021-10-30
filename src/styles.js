@@ -144,7 +144,7 @@ export const AI = styled.div`
   padding: 5px 10px;
   margin: auto;
   max-width: 400px;
-  padding-bottom: 20%;
+  min-height: 820px;
 
 
   .subhead {
@@ -243,7 +243,12 @@ export const AI = styled.div`
   input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+    opacity: 0;
   }
+
+  input[type=number] {
+    -moz-appearance:textfield;
+}
 
   .number-input {
     -webkit-appearance: none;
@@ -265,6 +270,7 @@ export const AI = styled.div`
     color: black;
     font-size: 2rem;
     margin: 15px auto 5px auto;
+    line-height: normal;
   }
 
   .select-input {
@@ -382,19 +388,20 @@ export const AI = styled.div`
     line-height: 20px;
     margin: auto;
     display: flex;
-    background: rgba(17, 169, 255, 0.12);
-    border: 1px solid #49beff;
-    box-sizing: border-box;
+/*     border: 1px solid #49beff;
+ */    box-sizing: border-box;
     border-radius: 5px;
     width: 276px;
     height: 41px;
     cursor: pointer;
   }
-  .MuiOutlinedInput-notchedOutline {
-    display: flex;
+   .MuiOutlinedInput-notchedOutline {
+    background: rgba(17, 169, 255, 0.12);
+    border: 1px solid #49beff;
+  /*  display: flex;
     border: none; 
-    cursor: pointer;
-  }
+    cursor: pointer;*/
+  } 
 
   .MuiInputBase-input {
     cursor: pointer;

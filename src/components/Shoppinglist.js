@@ -64,8 +64,7 @@ export default function Shoppinglist() {
       <div className="Shoppinglist">
         <h3>Shopping List</h3>
         <p className="Storage-description">
-          this is your shoppinglist. see all shoppinglist items, or add new
-          catagoies.
+          this is your shoppinglist. see all shoppinglist items.
         </p>
         <hr />
       </div>
