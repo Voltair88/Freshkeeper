@@ -15,7 +15,7 @@ An app that helps you keep track of you'r food items and notifies you when they 
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://github.com/Voltair88/freshkeeper-dev/blob/master/LICENSE)
 
 
 ## Screenshots
