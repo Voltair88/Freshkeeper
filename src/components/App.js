@@ -9,12 +9,10 @@ import React from "react";
 import { AuthProvider } from "../context/AuthContext";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Account from "./Account";
-import { AppContainer } from "../styles";
 
 function App() {
   
   return (
-    <AppContainer>
       <Router>
         <AuthProvider>
           <Header />
@@ -33,7 +31,6 @@ function App() {
           <BottomNavbar />
         </AuthProvider>
       </Router>
-    </AppContainer>
   );
 }
 

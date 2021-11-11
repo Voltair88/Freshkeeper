@@ -1,8 +1,5 @@
 import styled from "styled-components";
 
-export const AppContainer = styled.div`
-
-`;
 
 /* Header */
 export const Header = styled.header`
@@ -523,7 +520,6 @@ export const ST = styled.div`
     list-style: none;
     font-family: "Roboto", sans-serif;
     font-style: normal;
-    font-weight: 700;
     font-size: 20px;
     background: #d5e4fb;
     margin: 8px 0px;

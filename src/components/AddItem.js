@@ -151,6 +151,7 @@ export default function AddItem({ children }) {
             <input
               className="number-input"
               type="number"
+              placeholder="0"
               min={0}
               max={1000}
               precision={2}
