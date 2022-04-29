@@ -28,7 +28,7 @@ An app that helps you keep track of you'r food items and notifies you when they 
 
 ## Installation
 
-Install my-project with npm
+Install with npm
 
 ```bash
   download or clone the repository
